@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('media_footage', function (Blueprint $table) {
+        Schema::create('media_footages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('media_id')->constrained();
             $table->string('photo');
@@ -18,6 +18,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('media_footage');
+        Schema::dropIfExists('media_footages');
     }
 };
