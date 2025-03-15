@@ -17,7 +17,7 @@ class Media extends Model
         'preview',
         'contentURL',
         'studio_id',
-        'ageRating_id',
+        'age_rating_id',
     ];
 
     // Связь с студией

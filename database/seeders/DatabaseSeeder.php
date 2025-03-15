@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\AgeRating;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,7 +15,7 @@ class DatabaseSeeder extends Seeder
             ActorSeeder::class,
             DirectorSeeder::class,
             GenreSeeder::class,
-            AgeRating::class,
+            AgeRatingSeeder::class,
             StudioSeeder::class,
         ]);
     }

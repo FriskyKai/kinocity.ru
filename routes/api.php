@@ -65,7 +65,7 @@ Route::middleware('auth:api')->apiResource('reviews', ReviewController::class)->
 Route::get('/reviews', [ReviewController::class, 'index']);
 
 // Маршруты для Избранных
-Route::middleware('auth:api')->apiResource('favorites', FavoriteController::class)->except('index', 'update');
+Route::middleware('auth:api')->apiResource('favorites', FavoriteController::class)->except('show', 'update');
 
 
 

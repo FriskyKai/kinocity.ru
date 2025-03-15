@@ -34,7 +34,7 @@ class AuthController extends Controller
 
     // Аутентификация
     public function login(Request $request) {
-        if (!Auth::attempt($request->only('username', 'password'))) {
+        if (!Auth::attempt($request->only('email', 'password'))) {
             throw new ApiException('Unauthorized', 401);
         }
 
@@ -46,7 +46,7 @@ class AuthController extends Controller
         // Ответ
         return response()->json([
             'user' => new UserResource($user),
-            'token' => $user->api_token
+            'token' => $user->api_token,
         ])->setStatusCode(200);
     }
 

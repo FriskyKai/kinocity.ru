@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('preview');
             $table->string('contentURL');
             $table->foreignId('studio_id')->constrained();
-            $table->foreignId('ageRating_id')->constrained();
+            $table->foreignId('age_rating_id')->constrained();
             $table->timestamps();
         });
     }
