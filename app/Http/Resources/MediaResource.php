@@ -12,7 +12,7 @@ class MediaResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->name,
+            'description' => $this->description,
             'studio' => $this->studio->name,
             'type' => $this->type,
             'ageRating' => $this->ageRating->age,
@@ -22,9 +22,29 @@ class MediaResource extends JsonResource
             'episodes' => $this->episodes,
             'preview' => $this->preview,
             'contentURL' => $this->contentURL,
-            'genres' => [
-                // GenreResource::collection()
-            ],
+            'genres' => $this->mediaGenres->map(function ($mediaGenre) {
+                return [
+                    'name' => $mediaGenre->genre->name,
+                ];
+            }),
+            'directors' => $this->mediaDirectors->map(function ($mediaDirector) {
+                return [
+                    'surname' => $mediaDirector->director->surname,
+                    'name' => $mediaDirector->director->name,
+                    'birthday' => $mediaDirector->director->birthday,
+                    'bio' => $mediaDirector->director->bio,
+                    'photo' => $mediaDirector->director->photo,
+                ];
+            }),
+            'actors' => $this->mediaActors->map(function ($mediaActor) {
+                return [
+                    'surname' => $mediaActor->actor->surname,
+                    'name' => $mediaActor->actor->name,
+                    'birthday' => $mediaActor->actor->birthday,
+                    'bio' => $mediaActor->actor->bio,
+                    'photo' => $mediaActor->actor->photo,
+                ];
+            }),
         ];
     }
 }

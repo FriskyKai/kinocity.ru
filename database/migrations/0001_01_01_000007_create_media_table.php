@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('duration');
             $table->date('release');
             $table->decimal('rating', 3, 1);
-            $table->integer('episodes');
+            $table->integer('episodes')->nullable();
             $table->string('preview');
             $table->string('contentURL');
             $table->foreignId('studio_id')->constrained();

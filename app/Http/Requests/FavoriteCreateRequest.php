@@ -15,7 +15,6 @@ class FavoriteCreateRequest extends ApiRequest
     {
         return [
             'media_id' => 'required|integer|exists:media,id',
-            'date' => 'required|date',
         ];
     }
 }
