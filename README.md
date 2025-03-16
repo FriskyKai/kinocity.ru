@@ -32,3 +32,8 @@ DB_PASSWORD=Пароль_пользователя_БД
 
 SESSION_DRIVER=file
 ```
+
+6. Разверните БД с заготовленными наполнителями
+```shell
+php artisan migrate --seed
+```
