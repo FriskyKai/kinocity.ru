@@ -38,9 +38,11 @@ class GenreController extends Controller
         ])->setStatusCode(200);
     }
 
-    public function update(GenreUpdateRequest $request, Genre $genre)
+    public function update(GenreUpdateRequest $request, $id)
     {
-        if (empty($genre->id)) {
+        $genre = Genre::find($id);
+
+        if (empty($genre)) {
             throw new ApiException('Not Found', 404);
         }
 

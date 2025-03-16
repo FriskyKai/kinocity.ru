@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller
 {
-    // Создание медиа (POST /media)
     public function store(MediaCreateRequest $request)
     {
         $data = $request->validated();
@@ -29,7 +28,6 @@ class MediaController extends Controller
         ])->setStatusCode(201);
     }
 
-    // Список всех медиа (GET /media)
     public function index()
     {
         $media = Media::with(['studio', 'ageRating', 'mediaGenres.genre'])->get();
@@ -37,7 +35,6 @@ class MediaController extends Controller
         return response()->json(MediaResource::collection($media))->setStatusCode(200);
     }
 
-    // Показ одного медиа по ID (GET /media/{id})
     public function show($id)
     {
         $media = Media::with(['studio', 'ageRating', 'mediaGenres.genre'])->findOrFail($id);
@@ -47,8 +44,6 @@ class MediaController extends Controller
         ])->setStatusCode(200);
     }
 
-
-    // Обновление медиа (PUT/PATCH /media/{id})
     public function update(MediaUpdateRequest $request, $id)
     {
         $media = Media::findOrFail($id);
@@ -72,7 +67,6 @@ class MediaController extends Controller
         ])->setStatusCode(200);
     }
 
-    // Удаление медиа (DELETE /media/{id})
     public function destroy($id)
     {
         $media = Media::findOrFail($id);

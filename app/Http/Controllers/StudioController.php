@@ -38,9 +38,11 @@ class StudioController extends Controller
         ])->setStatusCode(200);
     }
 
-    public function update(StudioUpdateRequest $request, Studio $studio)
+    public function update(StudioUpdateRequest $request, $id)
     {
-        if (empty($studio->id)) {
+        $studio = Studio::find($id);
+
+        if (empty($studio)) {
             throw new ApiException('Not Found', 404);
         }
 
@@ -50,6 +52,8 @@ class StudioController extends Controller
             'studio' => new StudioResource($studio),
         ])->setStatusCode(200);
     }
+
+
 
     public function destroy($studio_id)
     {

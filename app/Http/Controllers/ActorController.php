@@ -8,14 +8,25 @@ use App\Http\Requests\BiographyUpdateRequest;
 use App\Http\Resources\BiographyResource;
 use App\Models\Actor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ActorController extends Controller
 {
     public function store(BiographyCreateRequest $request)
     {
-        $actor = Actor::create($request->all());
+        $data = $request->validated();
 
-        return response()->json(new BiographyResource($actor))->setStatusCode(201);
+        // Обработка photo-файла
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('photos', 'public');
+            $data['photo'] = $path;
+        }
+
+        $actor = Actor::create($data);
+
+        return response()->json([
+            'actor' => new BiographyResource($actor),
+        ])->setStatusCode(201);
     }
 
     public function index()
@@ -38,28 +49,39 @@ class ActorController extends Controller
         ])->setStatusCode(200);
     }
 
-    public function update(BiographyUpdateRequest $request, Actor $actor)
+    public function update(BiographyUpdateRequest $request, $id)
     {
-        if (empty($actor->id)) {
-            throw new ApiException('Not Found', 404);
+        $actor = Actor::findOrFail($id);
+        $data = $request->validated();
+
+        // Обновление photo при необходимости
+        if ($request->hasFile('photo')) {
+            // Удалим старый файл если он был
+            if ($actor->photo && Storage::disk('public')->exists($actor->photo)) {
+                Storage::disk('public')->delete($actor->photo);
+            }
+
+            $path = $request->file('photo')->store('photos', 'public');
+            $data['photo'] = $path;
         }
 
-        $actor->update($request->validated());
+        $actor->update($data);
 
         return response()->json([
             'actor' => new BiographyResource($actor),
         ])->setStatusCode(200);
     }
 
-    public function destroy($actor_id)
+    public function destroy($id)
     {
-        $actor = Actor::find($actor_id);
+        $actor = Actor::findOrFail($id);
 
-        if (empty($actor)) {
-            throw new ApiException('Not Found', 404);
+        // Удаляем photo-файл, если есть
+        if ($actor->photo && Storage::disk('public')->exists($actor->photo)) {
+            Storage::disk('public')->delete($actor->photo);
         }
 
-        Actor::destroy($actor_id);
+        $actor->delete();
 
         return response()->json('Актёр удалён')->setStatusCode(200, 'Удалено');
     }

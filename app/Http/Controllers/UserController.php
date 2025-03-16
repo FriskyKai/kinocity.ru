@@ -31,9 +31,11 @@ class UserController extends Controller
         ])->setStatusCode(200);
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, $id)
     {
-        if (empty($user->id)) {
+        $user = User::find($id);
+
+        if (empty($user)) {
             throw new ApiException('Not Found', 404);
         }
 
