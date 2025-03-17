@@ -11,8 +11,8 @@ class FavoriteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'media_id' => $this->media_id,
+            'user' => new UserResource($this->user),
+            'media' => $this->media->name,
             'date' => $this->date,
         ];
     }

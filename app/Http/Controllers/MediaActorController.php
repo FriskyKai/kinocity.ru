@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ApiException;
 use App\Http\Requests\MediaActorCreateRequest;
+use App\Http\Resources\MediaActorResource;
 use App\Models\MediaActor;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class MediaActorController extends Controller
             'actor_id' => $request->actor_id,
         ]);
 
-        return response()->json($mediaActor)->setStatusCode(201);
+        return response()->json(new MediaActorResource($mediaActor))->setStatusCode(201);
     }
 
     public function destroy($mediaActorId)

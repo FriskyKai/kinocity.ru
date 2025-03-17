@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ApiException;
 use App\Http\Requests\MediaGenreCreateRequest;
+use App\Http\Resources\MediaGenreResource;
 use App\Models\MediaGenre;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class MediaGenreController extends Controller
             'genre_id' => $request->genre_id,
         ]);
 
-        return response()->json($mediaGenre)->setStatusCode(201);
+        return response()->json(new MediaGenreResource($mediaGenre))->setStatusCode(201);
     }
 
     public function destroy($mediaGenreId)

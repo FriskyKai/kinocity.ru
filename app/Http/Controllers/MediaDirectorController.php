@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ApiException;
 use App\Http\Requests\MediaDirectorCreateRequest;
+use App\Http\Resources\MediaDirectorResource;
 use App\Models\MediaDirector;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,7 @@ class MediaDirectorController extends Controller
             'director_id' => $request->director_id,
         ]);
 
-        return response()->json($mediaDirector)->setStatusCode(201);
+        return response()->json(new MediaDirectorResource($mediaDirector))->setStatusCode(201);
     }
 
     public function destroy($mediaDirectorId)

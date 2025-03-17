@@ -24,11 +24,13 @@ class MediaResource extends JsonResource
             'contentURL' => $this->contentURL,
             'genres' => $this->mediaGenres->map(function ($mediaGenre) {
                 return [
+                    'id' => $mediaGenre->id,
                     'name' => $mediaGenre->genre->name,
                 ];
             }),
             'directors' => $this->mediaDirectors->map(function ($mediaDirector) {
                 return [
+                    'id' => $mediaDirector->id,
                     'surname' => $mediaDirector->director->surname,
                     'name' => $mediaDirector->director->name,
                     'birthday' => $mediaDirector->director->birthday,
@@ -38,12 +40,16 @@ class MediaResource extends JsonResource
             }),
             'actors' => $this->mediaActors->map(function ($mediaActor) {
                 return [
+                    'id' => $mediaActor->id,
                     'surname' => $mediaActor->actor->surname,
                     'name' => $mediaActor->actor->name,
                     'birthday' => $mediaActor->actor->birthday,
                     'bio' => $mediaActor->actor->bio,
                     'photo' => $mediaActor->actor->photo,
                 ];
+            }),
+            'review' => $this->reviews->map(function ($review) {
+                return new ReviewResource($review);
             }),
         ];
     }

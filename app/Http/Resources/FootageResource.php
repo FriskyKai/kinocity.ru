@@ -11,7 +11,7 @@ class FootageResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'media_id' => $this->media_id,
+            'media' => $this->media->name,
             'photo' => $this->photo,
         ];
     }
