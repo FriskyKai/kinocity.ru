@@ -17,6 +17,13 @@ class DatabaseSeeder extends Seeder
             GenreSeeder::class,
             AgeRatingSeeder::class,
             StudioSeeder::class,
+            MediaSeeder::class,
+            MediaFootageSeeder::class,
+            MediaGenreSeeder::class,
+            MediaActorSeeder::class,
+            MediaDirectorSeeder::class,
+            FavoriteSeeder::class,
+            ReviewSeeder::class,
         ]);
     }
 }
