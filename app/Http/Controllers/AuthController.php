@@ -18,8 +18,16 @@ class AuthController extends Controller
     public function register(RegisterRequest $request) {
         $role_user = Role::where('code', 'user')->first();
 
+        $data = $request->validated();
+
+        // Обработка avatar-файла
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $data['avatar'] = $path;
+        }
+
         $user = User::create([
-            ...$request->validated(),
+            ...$data,
             'role_id' => $role_user->id,
         ]);
 

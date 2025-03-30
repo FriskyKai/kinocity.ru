@@ -39,7 +39,15 @@ class UserController extends Controller
             throw new ApiException('Not Found', 404);
         }
 
-        $user->update($request->validated());
+        $data = $request->validated();
+
+        // Обработка avatar-файла
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $data['avatar'] = $path;
+        }
+
+        $user->update($data);
 
         return response()->json([
             'user' => new UserResource($user),
