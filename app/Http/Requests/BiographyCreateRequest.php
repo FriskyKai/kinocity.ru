@@ -18,7 +18,7 @@ class BiographyCreateRequest extends ApiRequest
             'name' => 'required|string|max:255',
             'birthday' => 'required|date',
             'bio' => 'required|string|max:255',
-            'photo' => 'file|max:2048|mimes:jpeg,jpg,png',
+            'photo' => 'file|mimes:jpeg,jpg,png,gif|max:10000',
         ];
     }
 }

@@ -21,7 +21,7 @@ class MediaCreateRequest extends ApiRequest
             'release' => 'required|date',
             'rating' => 'required|numeric|between:0,10|regex:/^\d{1,2}(\.\d{1})?$/',
             'episodes' => 'nullable|integer',
-            'preview' => 'required|file|max:2048|mimes:jpeg,jpg,png',
+            'preview' => 'required|file|mimes:jpeg,jpg,png,gif|max:10000',
             'contentURL' => 'required|string|max:255',
             'studio_id' => 'required|integer|exists:studios,id',
             'age_rating_id' => 'required|integer|exists:age_ratings,id',

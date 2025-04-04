@@ -19,7 +19,7 @@ class RegisterRequest extends ApiRequest
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|max:255',
             'birthday' => 'required|date',
-            'avatar' => 'file|max:2048|mimes:jpeg,jpg,png'
+            'avatar' => 'file|mimes:jpeg,jpg,png,gif|max:10000'
         ];
     }
 }

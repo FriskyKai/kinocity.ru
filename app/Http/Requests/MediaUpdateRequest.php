@@ -21,7 +21,7 @@ class MediaUpdateRequest extends ApiRequest
             'release' => 'date',
             'rating' => 'decimal:3,1',
             'episodes' => 'integer',
-            'preview' => 'file|max:2048|mimes:jpeg,jpg,png',
+            'preview' => 'file|mimes:jpeg,jpg,png,gif|max:10000',
             'contentURL' => 'string|max:255',
             'studio_id' => 'integer|exists:studios,id',
             'age_rating_id' => 'integer|exists:age_ratings,id',

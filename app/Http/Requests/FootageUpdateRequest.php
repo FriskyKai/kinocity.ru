@@ -15,7 +15,7 @@ class FootageUpdateRequest extends ApiRequest
     {
         return [
             'media_id' => 'integer|exists:media,id',
-            'photo' => 'file|max:2048|mimes:jpeg,jpg,png',
+            'photo' => 'file|mimes:jpeg,jpg,png,gif|max:10000',
         ];
     }
 }

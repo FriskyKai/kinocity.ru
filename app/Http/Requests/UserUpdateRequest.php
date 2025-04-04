@@ -20,7 +20,7 @@ class UserUpdateRequest extends ApiRequest
             'email' => 'string|email|max:255|unique:users',
             'password' => 'string|min:6|max:255',
             'birthday' => 'date',
-            'avatar' => 'file|max:2048|mimes:jpeg,jpg,png'
+            'avatar' => 'file|mimes:jpeg,jpg,png,gif|max:10000',
         ];
     }
 }
