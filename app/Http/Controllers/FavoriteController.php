@@ -38,6 +38,20 @@ class FavoriteController extends Controller
         return response()->json(FavoriteResource::collection($favorites))->setStatusCode(200);
     }
 
+    public function isFavorite($media_id)
+    {
+        // Проверяем, добавлял ли пользователь это уже в избранное
+        $exists = Favorite::where('user_id', auth()->id())
+            ->where('media_id', $media_id)
+            ->exists();
+
+        if ($exists) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function destroy($favorite_id)
     {
         $favorite = Favorite::find($favorite_id);
