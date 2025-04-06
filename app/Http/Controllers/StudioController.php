@@ -53,8 +53,6 @@ class StudioController extends Controller
         ])->setStatusCode(200);
     }
 
-
-
     public function destroy($studio_id)
     {
         $studio = Studio::find($studio_id);
