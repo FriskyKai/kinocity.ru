@@ -46,10 +46,10 @@ class FavoriteController extends Controller
             ->exists();
 
         if ($exists) {
-            return true;
+            return 1;
         }
 
-        return false;
+        return 0;
     }
 
     public function destroy($favorite_id)
