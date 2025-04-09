@@ -8,6 +8,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -63,8 +64,14 @@ class UserController extends Controller
         DB::beginTransaction();
 
         try {
-            // Удаляем связанные данные
-            // $user->favorites()->delete();
+            // Удаляем связанные записи
+            $user->favorites()->delete();
+            $user->reviews()->delete();
+
+            // Удаляем avatar-файл, если есть
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
 
             // Удаляем пользователя
             $user->delete();

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ApiException;
 use App\Http\Requests\MediaCreateRequest;
 use App\Http\Requests\MediaUpdateRequest;
 use App\Http\Resources\MediaResource;
 use App\Models\Media;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller
@@ -67,17 +69,38 @@ class MediaController extends Controller
         ])->setStatusCode(200);
     }
 
-    public function destroy($id)
+    public function destroy(Media $media)
     {
-        $media = Media::findOrFail($id);
-
-        // Удаляем preview-файл, если есть
-        if ($media->preview && Storage::disk('public')->exists($media->preview)) {
-            Storage::disk('public')->delete($media->preview);
+        if (empty($media)) {
+            throw new ApiException('Not Found', 404);
         }
 
-        $media->delete();
+        DB::beginTransaction();
 
-        return response()->json('Медиа удалено')->setStatusCode(200, 'Удалено');
+        try {
+            // Удаляем связанные записи
+            $media->favorites()->delete();
+            $media->reviews()->delete();
+            $media->mediaActors()->delete();
+            $media->mediaDirectors()->delete();
+            $media->mediaGenres()->delete();
+            $media->mediaFootages()->delete();
+
+            // Удаляем preview-файл, если есть
+            if ($media->preview && Storage::disk('public')->exists($media->preview)) {
+                Storage::disk('public')->delete($media->preview);
+            }
+
+            // Удаляем медиа
+            $media->delete();
+
+            DB::commit();
+
+            return response()->json('Медиа удалено успешно.')->setStatusCode(200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json('Ошибка удаления медиа: ' . $e->getMessage(), 500);
+        }
     }
 }
