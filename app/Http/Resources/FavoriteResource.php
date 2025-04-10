@@ -12,7 +12,7 @@ class FavoriteResource extends JsonResource
         return [
             'id' => $this->id,
             'user' => new UserResource($this->user),
-            'media' => $this->media->name,
+            'media' => new MediaResource($this->media),
             'date' => $this->date,
         ];
     }
