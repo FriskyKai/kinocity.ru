@@ -46,8 +46,16 @@ nav a:hover {
     border: 1px solid dimgray;
 }
 
+.border-list {
+    border: 1px solid black;
+}
+
 .warning {
     color: red;
+}
+
+.center {
+    align-items: center;
 }
 
 .nav-page {
@@ -65,6 +73,11 @@ nav a:hover {
 
 .btn:hover {
     background-color: #e6d7cc;
+}
+
+.footage {
+    width: 250px;
+    height: 250px;
 }
 
 /*.main-background {*/

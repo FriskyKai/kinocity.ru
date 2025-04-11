@@ -87,7 +87,7 @@
                     <p class="warning">{{ $message }}</p>
                 @enderror
                 <label>* Рейтинг:</label>
-                <input name="rating" type="number" placeholder="Введите рейтинг" min="0" max="10" required>
+                <input name="rating" type="number" placeholder="Введите рейтинг" min="0" max="10" step="0.01" required>
             </div>
             <div>
                 @error('episodes')

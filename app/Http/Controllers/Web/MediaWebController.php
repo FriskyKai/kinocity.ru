@@ -7,8 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaCreateRequest;
 use App\Http\Requests\MediaUpdateRequest;
 use App\Http\Resources\MediaResource;
+use App\Models\Actor;
 use App\Models\AgeRating;
+use App\Models\Director;
 use App\Models\Media;
+use App\Models\MediaActor;
+use App\Models\MediaDirector;
+use App\Models\MediaFootage;
 use App\Models\Studio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +52,18 @@ class MediaWebController extends Controller
     }
 
     public function show(Media $media) {
-        return view('media.show', compact('media'));
+        $footages = MediaFootage::where('media_id', $media->id)->get();
+
+        // Актёры через media_actors
+        $actors = $media->mediaActors()->with('actor')->get()->pluck('actor');
+
+        // Режиссёры через media_directors
+        $directors = $media->mediaDirectors()->with('director')->get()->pluck('director');
+
+        // Жанры через media_genres
+        $genres = $media->mediaGenres()->with('genre')->get()->pluck('genre');
+
+        return view('media.show', compact('media', 'footages', 'directors', 'actors', 'genres'));
     }
 
     public function edit(Media $media)

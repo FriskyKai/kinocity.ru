@@ -12,9 +12,9 @@
 <body>
 
 <header>
-    <nav>
+    <nav class="flex center">
         <div>
-            <img src="{{ asset('assets/images/logo.png') }}" alt="Логотип" width="75"/>
+            <img src="{{ asset('assets/images/logos/cinema.svg') }}" alt="Логотип" width="75"/>
         </div>
         <ul>
             <li><a class="nav-page" href="{{ route('users.index') }}">Пользователи</a></li>

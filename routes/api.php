@@ -65,9 +65,9 @@ Route::get('/media/{id}', [MediaController::class, 'show']);
 // Route::get('') || просмотр медиа
 
 // Маршруты для связей с Медиа-каталогом
-Route::middleware('auth:api')->apiResource('media_genres', MediaGenreController::class)->except('index', 'show', 'update');
-Route::middleware('auth:api')->apiResource('media_directors', MediaDirectorController::class)->except('index', 'show', 'update');
-Route::middleware('auth:api')->apiResource('media_actors', MediaActorController::class)->except('index', 'show', 'update');
+Route::middleware('auth:api')->apiResource('media_genres', MediaGenreController::class)->except('show', 'update');
+Route::middleware('auth:api')->apiResource('media_directors', MediaDirectorController::class)->except('show', 'update');
+Route::middleware('auth:api')->apiResource('media_actors', MediaActorController::class)->except('show', 'update');
 
 // Маршруты для Медиа-кадра
 Route::middleware(['auth:api', CheckRole::class . ':admin'])->apiResource('media_footages', FootageController::class)->except('index', 'show', 'update');

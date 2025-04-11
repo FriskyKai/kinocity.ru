@@ -6,7 +6,7 @@
     <a class="btn" href="/media">Вернуться к списку</a>
     <a class="btn" href="/media/show/{{$media->id}}">Вернуться к медиа</a>
 
-    <form class="flex border" action="{{ route('media.update') }}" method="POST" enctype="multipart/form-data">
+    <form class="flex border" action="{{ route('media.update', $media->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if($errors->any())
             <script>
@@ -88,13 +88,13 @@
                     <p class="warning">{{ $message }}</p>
                 @enderror
                 <label>Рейтинг:</label>
-                <input name="rating" type="number" placeholder="Введите рейтинг" min="0" max="10" value="{{ $media->rating }}">
+                <input name="rating" type="number" placeholder="Введите рейтинг" min="0" max="10" step="0.1" value="{{ $media->rating }}">
             </div>
             <div>
                 @error('episodes')
                     <p class="warning">{{ $message }}</p>
                 @enderror
-                <label>Кол-во серий (1 - если фильм):</label>
+                <label>Кол-во серий (Пустое или 1 - если фильм):</label>
                 <input name="episodes" type="number" placeholder="Введите кол-во серий" min="1" value="{{ $media->episodes }}">
             </div>
 

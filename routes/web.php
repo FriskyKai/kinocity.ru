@@ -3,6 +3,9 @@
 use App\Http\Controllers\Web\ActorWebController;
 use App\Http\Controllers\Web\DirectorWebController;
 use App\Http\Controllers\Web\GenreWebController;
+use App\Http\Controllers\Web\MediaActorWebController;
+use App\Http\Controllers\Web\MediaDirectorWebController;
+use App\Http\Controllers\Web\MediaGenreWebController;
 use App\Http\Controllers\Web\MediaWebController;
 use App\Http\Controllers\Web\StudioWebController;
 use App\Http\Controllers\Web\UserWebController;
@@ -67,4 +70,15 @@ Route::post('/media/edit/{media}', [MediaWebController::class, 'update'])->name(
 Route::get('/media/delete/{media}', [MediaWebController::class, 'destroy'])->name('media.destroy');
 
 // Маршруты для Медиа-связей
-
+// Медиа-жанры
+Route::get('/media-genres/create', [MediaGenreWebController::class, 'create'])->name('media-genres.create');
+Route::post('/media-genres/create', [MediaGenreWebController::class, 'store'])->name('media-genres.store');
+Route::get('/media-genres/delete/{id}', [MediaGenreWebController::class, 'destroy'])->name('media-genres.destroy');
+// Медиа-режиссёры
+Route::get('/media-directors/create', [MediaDirectorWebController::class, 'create'])->name('media-directors.create');
+Route::post('/media-directors/create', [MediaDirectorWebController::class, 'store'])->name('media-directors.store');
+Route::get('/media-directors/delete/{id}', [MediaDirectorWebController::class, 'destroy'])->name('media-directors.destroy');
+// Медиа-актёры
+Route::get('/media-actors/create', [MediaActorWebController::class, 'create'])->name('media-actors.create');
+Route::post('/media-actors/create', [MediaActorWebController::class, 'store'])->name('media-actors.store');
+Route::get('/media-actors/delete/{id}', [MediaActorWebController::class, 'destroy'])->name('media-actors.destroy');

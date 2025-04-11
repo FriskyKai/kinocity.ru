@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ApiException;
 use App\Http\Requests\MediaGenreCreateRequest;
 use App\Http\Resources\MediaGenreResource;
+use App\Models\Media;
 use App\Models\MediaGenre;
 use Illuminate\Http\Request;
 
