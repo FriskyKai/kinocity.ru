@@ -35,7 +35,35 @@ class FavoriteController extends Controller
         $user = auth()->user(); // получаем текущего пользователя
         $favorites = Favorite::where('user_id', $user->id)->get(); // фильтрация по user_id
 
+        if (empty($favorites)) {
+            throw new ApiException('Not Found', 404);
+        }
+
         return response()->json(FavoriteResource::collection($favorites))->setStatusCode(200);
+    }
+
+    public function show($media_id)
+    {
+        $favorite = Favorite::where('user_id', auth()->id())->where('media_id', $media_id)->first();
+
+        if (empty($favorite)) {
+            throw new ApiException('Not Found', 404);
+        }
+
+        return response()->json(new FavoriteResource($favorite))->setStatusCode(200);
+    }
+
+    public function destroy($favorite_id)
+    {
+        $favorite = Favorite::find($favorite_id);
+
+        if (empty($favorite)) {
+            throw new ApiException('Not Found', 404);
+        }
+
+        Favorite::destroy($favorite_id);
+
+        return response()->json('Избранное удалено')->setStatusCode(200, 'Удалено');
     }
 
     public function isFavorite($media_id)
@@ -50,18 +78,5 @@ class FavoriteController extends Controller
         }
 
         return 0;
-    }
-
-    public function destroy($favorite_id)
-    {
-        $favorite = Favorite::find($favorite_id);
-
-        if (empty($favorite)) {
-            throw new ApiException('Not Found', 404);
-        }
-
-        Favorite::destroy($favorite_id);
-
-        return response()->json('Избранное удалено')->setStatusCode(200, 'Удалено');
     }
 }

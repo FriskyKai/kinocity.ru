@@ -4,6 +4,7 @@
 
 @section('content')
     <a class="btn" href="/directors">Вернуться к списку</a>
+    <a class="btn" href="/directors/show/{{$director->id}}">Вернуться к режиссёру</a>
 
     <form class="flex border" action="{{ route('directors.update', $director->id) }}" method="POST" enctype="multipart/form-data">
         @csrf

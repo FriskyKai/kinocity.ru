@@ -7,6 +7,7 @@ use App\Http\Requests\BiographyCreateRequest;
 use App\Http\Requests\BiographyUpdateRequest;
 use App\Models\Actor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ActorWebController extends Controller
 {
@@ -61,6 +62,11 @@ class ActorWebController extends Controller
 
     public function destroy(Actor $actor)
     {
+        // Удаляем photo-файл, если есть
+        if ($actor->photo && Storage::disk('public')->exists($actor->photo)) {
+            Storage::disk('public')->delete($actor->photo);
+        }
+
         Actor::destroy($actor->id);
 
         return redirect()->route('actors.index');

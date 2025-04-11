@@ -4,6 +4,7 @@
 
 @section('content')
     <a class="btn" href="/studios">Вернуться к списку</a>
+    <a class="btn" href="/studios/show/{{$studio->id}}">Вернуться к студии</a>
 
     <form class="flex border" action="{{ route('studios.update', $studio->id) }}" method="POST" enctype="application/x-www-form-urlencoded">
         @csrf

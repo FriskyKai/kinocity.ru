@@ -4,6 +4,7 @@
 
 @section('content')
     <a class="btn" href="/actors">Вернуться к списку</a>
+    <a class="btn" href="/actors/show/{{$actor->id}}">Вернуться к актёру</a>
 
     <form class="flex border" action="{{ route('actors.update', $actor->id) }}" method="POST" enctype="multipart/form-data">
         @csrf

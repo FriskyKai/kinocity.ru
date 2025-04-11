@@ -7,6 +7,7 @@ use App\Http\Requests\BiographyCreateRequest;
 use App\Http\Requests\BiographyUpdateRequest;
 use App\Models\Director;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DirectorWebController extends Controller
 {
@@ -61,6 +62,11 @@ class DirectorWebController extends Controller
 
     public function destroy(Director $director)
     {
+        // Удаляем photo-файл, если есть
+        if ($director->photo && Storage::disk('public')->exists($director->photo)) {
+            Storage::disk('public')->delete($director->photo);
+        }
+
         Director::destroy($director->id);
 
         return redirect()->route('directors.index');

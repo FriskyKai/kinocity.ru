@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Exceptions\ApiException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class UserWebController extends Controller
 {
@@ -70,6 +73,32 @@ class UserWebController extends Controller
     }
 
     public function destroy(User $user) {
-        // destroy
+        if (empty($user)) {
+            throw new ApiException('Not Found', 404);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // Удаляем связанные записи
+            $user->favorites()->delete();
+            $user->reviews()->delete();
+
+            // Удаляем avatar-файл, если есть
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+
+            // Удаляем пользователя
+            $user->delete();
+
+            DB::commit();
+
+            return response()->json('Пользователь удалён успешно.')->setStatusCode(200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json('Ошибка удаления пользователя: ' . $e->getMessage(), 500);
+        }
     }
 }

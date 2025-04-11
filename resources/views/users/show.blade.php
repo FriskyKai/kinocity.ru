@@ -5,6 +5,7 @@
 @section('content')
     <a class="btn" href="/users">Вернуться к списку</a>
     <a class="btn" href="/users/edit/{{$user->id}}">Редактировать пользователя</a>
+    <a class="btn" href="/users/delete/{{$user->id}}">Удалить пользователя</a>
 
     <div class="flex border">
         <div>
