@@ -31,23 +31,20 @@ class DirectorController extends Controller
 
     public function index()
     {
-        $directors = Director::all();
+        $directors = Director::with('mediaDirectors.media')->get();
 
         return response()->json(BiographyResource::collection($directors))->setStatusCode(200);
     }
 
     public function show($director_id)
     {
-        $director = Director::where('id', $director_id)->firstOrFail();
-
-        if (empty($director)) {
-            throw new ApiException('Not Found', 404);
-        }
+        $director = Director::with('mediaDirectors.media')->findOrFail($director_id);
 
         return response()->json([
             'director' => new BiographyResource($director),
         ])->setStatusCode(200);
     }
+
 
     public function update(BiographyUpdateRequest $request, $id)
     {

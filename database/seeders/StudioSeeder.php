@@ -12,6 +12,24 @@ class StudioSeeder extends Seeder
     {
         DB::table('studios')->insert([
             [
+                'name' => 'Warner Bros. Pictures',
+            ],
+            [
+                'name' => 'Sony Pictures Entertainment',
+            ],
+            [
+                'name' => 'Walt Disney Studios Motion Pictures',
+            ],
+            [
+                'name' => 'DreamWorks',
+            ],
+            [
+                'name' => 'Universal Studios',
+            ],
+            [
+                'name' => 'Paramount Pictures',
+            ],
+            [
                 'name' => 'A-1 Pictures',
             ],
             [
@@ -19,15 +37,6 @@ class StudioSeeder extends Seeder
             ],
             [
                 'name' => 'MAPPA',
-            ],
-            [
-                'name' => 'Warner Bros',
-            ],
-            [
-                'name' => 'Sony Pictures',
-            ],
-            [
-                'name' => 'DreamWorks',
             ],
         ]);
     }

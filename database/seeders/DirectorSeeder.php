@@ -12,11 +12,11 @@ class DirectorSeeder extends Seeder
     {
         DB::table('directors')->insert([
             [
-                'surname' => 'Тестовый',
-                'name' => 'Режиссёр',
-                'birthday' => '2000-01-01',
-                'bio' => 'Текстовая биография',
-                'photo' => null,
+                'surname' => 'Нолан',
+                'name' => 'Кристофер',
+                'birthday' => '1970-07-30',
+                'bio' => 'Британский кинорежиссёр, сценарист и продюсер',
+                'photo' => 'assets/images/photos/cristofernolan.jpg',
             ],
             [
                 'surname' => 'Тестовый2',
