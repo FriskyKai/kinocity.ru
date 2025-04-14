@@ -42,15 +42,19 @@ class FavoriteController extends Controller
         return response()->json(FavoriteResource::collection($favorites))->setStatusCode(200);
     }
 
-    public function show($media_id)
+    // Удалить на странице медиа
+    public function destroyByMedia($media_id)
     {
-        $favorite = Favorite::where('user_id', auth()->id())->where('media_id', $media_id)->first();
+        $favorite = Favorite::where('user_id', auth()->id())
+            ->where('media_id', $media_id)
+            ->first();
 
-        if (empty($favorite)) {
-            throw new ApiException('Not Found', 404);
+        if ($favorite) {
+            $favorite->delete();
+            return 1;
         }
 
-        return response()->json(new FavoriteResource($favorite))->setStatusCode(200);
+        return 0;
     }
 
     public function destroy($favorite_id)

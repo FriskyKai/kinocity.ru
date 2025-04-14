@@ -48,6 +48,12 @@ class MediaResource extends JsonResource
                     'photo' => $mediaActor->actor->photo,
                 ];
             }),
+            'footages' => $this->mediaFootages->map(function ($mediaFootage) {
+                return [
+                    'id' => $mediaFootage->id,
+                    'photo' => $mediaFootage->photo,
+                ];
+            }),
             'review' => $this->reviews->map(function ($review) {
                 return new ReviewResource($review);
             }),
