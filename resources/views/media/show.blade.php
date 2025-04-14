@@ -58,7 +58,7 @@
                 @endforeach
             </div>
 
-            <div>СДЕЛАТЬ ДОБАВЛЕНИЕ КАДРОВ</div>
+            <div>СДЕЛАТЬ ДОБАВЛЕНИЕ/УДАЛЕНИЕ КАДРОВ</div>
         </div>
     </div>
 @endsection

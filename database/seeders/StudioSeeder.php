@@ -15,20 +15,36 @@ class StudioSeeder extends Seeder
                 'name' => 'Warner Bros. Pictures',
             ],
             [
-                'name' => 'Sony Pictures Entertainment',
+                'name' => '20th Century Studios',
+            ],
+            [
+                'name' => 'Paramount Pictures',
             ],
             [
                 'name' => 'Walt Disney Studios Motion Pictures',
             ],
             [
-                'name' => 'DreamWorks',
+                'name' => 'Sony Pictures Entertainment',
             ],
             [
                 'name' => 'Universal Studios',
             ],
             [
-                'name' => 'Paramount Pictures',
+                'name' => 'Netflix',
             ],
+            [
+                'name' => 'Lionsgate',
+            ],
+
+
+            [
+                'name' => 'Columbia Pictures',
+            ],
+            [
+                'name' => 'DreamWorks',
+            ],
+
+
             [
                 'name' => 'A-1 Pictures',
             ],
