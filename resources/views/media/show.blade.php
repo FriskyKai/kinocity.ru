@@ -57,6 +57,8 @@
                     <img class="footage" src="{{ asset('storage/' . $footage->photo) }}" alt="Кадр">
                 @endforeach
             </div>
+
+            <div>СДЕЛАТЬ ДОБАВЛЕНИЕ КАДРОВ</div>
         </div>
     </div>
 @endsection
