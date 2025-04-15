@@ -9,7 +9,7 @@
 
     <div class="flex border">
         <div>
-            <img src="{{ asset('storage/' . $user->avatar) }}" alt="Аватар" width="75"/>
+            <img src="{{ Str::startsWith($user->avatar, 'assets/') ? asset($user->avatar) : asset('storage/' . $user->avatar) }}" alt="Аватар" width="75"/>
             <div>Роль: {{ $user->role->name }}</div>
             <div>Фамилия: {{ $user->surname }}</div>
             <div>Имя: {{ $user->name }}</div>

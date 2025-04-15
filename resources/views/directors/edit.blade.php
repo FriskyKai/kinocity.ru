@@ -15,7 +15,7 @@
         @endif
 
         <div>
-            <img src="{{ asset('storage/' . $director->photo) }}" alt="Фото" width="75"/>
+            <img src="{{ Str::startsWith($director->photo, 'assets/') ? asset($director->photo) : asset('storage/' . $director->photo) }}" alt="Фото" width="75"/>
             <div>
                 @error('photo')
                     <p class="warning">{{ $message }}</p>

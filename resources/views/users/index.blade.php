@@ -9,7 +9,7 @@
         <a href="/users/show/{{$user->id}}">
             <div class="flex border">
                 <div>
-                    <img src="{{ asset('storage/' . $user->avatar) }}" alt="Аватар" width="75"/>
+                    <img src="{{ Str::startsWith($user->avatar, 'assets/') ? asset($user->avatar) : asset('storage/' . $user->avatar) }}" alt="Аватар" width="75"/>
                     <div>Фамилия: {{ $user->surname }}</div>
                     <div>Имя: {{ $user->name }}</div>
                 </div>

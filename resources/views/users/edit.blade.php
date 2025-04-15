@@ -15,7 +15,7 @@
         @endif
 
         <div>
-            <img src="{{ asset('storage/' . $user->avatar) }}" alt="Аватар" width="75"/>
+            <img src="{{ Str::startsWith($user->avatar, 'assets/') ? asset($user->avatar) : asset('storage/' . $user->avatar) }}" alt="Аватар" width="75"/>
             <div>
                 @error('avatar')
                     <p class="warning">{{ $message }}</p>

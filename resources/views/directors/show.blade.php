@@ -9,7 +9,7 @@
 
     <div class="flex border">
         <div>
-            <img src="{{ asset('storage/' . $director->photo) }}" alt="Фото" width="75"/>
+            <img src="{{ Str::startsWith($director->photo, 'assets/') ? asset($director->photo) : asset('storage/' . $director->photo) }}" alt="Фото" width="75"/>
             <div>Фамилия: {{ $director->surname }}</div>
             <div>Имя: {{ $director->name }}</div>
             <div>Дата рождения: {{ $director->birthday }}</div>

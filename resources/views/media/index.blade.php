@@ -8,7 +8,7 @@
         <a href="/media/show/{{$media->id}}">
             <div class="flex border">
                 <div>
-                    <img src="{{ $media->preview }}" alt="Превью" width="75"/>
+                    <img src="{{ Str::startsWith($media->preview, 'assets/') ? asset($media->preview) : asset('storage/' . $media->preview) }}" alt="Превью" width="75"/>
                     <div>Название: {{ $media->name }}</div>
                     <div>Описание: {{ $media->description }}</div>
                     <div>Тип: {{ $media->type ? 'Сериал' : 'Фильм' }}</div>

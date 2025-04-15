@@ -15,7 +15,7 @@
         @endif
 
         <div>
-            <img src="{{ asset('storage/' . $media->preview) }}" alt="Превью" width="75"/>
+            <img src="{{ Str::startsWith($media->preview, 'assets/') ? asset($media->preview) : asset('storage/' . $media->preview) }}" alt="Превью" width="75"/>
             <div>
                 @error('preview')
                     <p class="warning">{{ $message }}</p>

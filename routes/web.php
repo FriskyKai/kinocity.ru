@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\ActorWebController;
 use App\Http\Controllers\Web\DirectorWebController;
+use App\Http\Controllers\Web\FootageWebController;
 use App\Http\Controllers\Web\GenreWebController;
 use App\Http\Controllers\Web\MediaActorWebController;
 use App\Http\Controllers\Web\MediaDirectorWebController;
@@ -82,3 +83,8 @@ Route::get('/media-directors/delete/{id}', [MediaDirectorWebController::class, '
 Route::get('/media-actors/create', [MediaActorWebController::class, 'create'])->name('media-actors.create');
 Route::post('/media-actors/create', [MediaActorWebController::class, 'store'])->name('media-actors.store');
 Route::get('/media-actors/delete/{id}', [MediaActorWebController::class, 'destroy'])->name('media-actors.destroy');
+
+// Маршруты для Медиа-кадров
+Route::get('/media-footages/create', [FootageWebController::class, 'create'])->name('media-footages.create');
+Route::post('/media-footages/create', [FootageWebController::class, 'store'])->name('media-footages.store');
+Route::get('/media-footages/delete/{id}', [FootageWebController::class, 'destroy'])->name('media-footages.destroy');
