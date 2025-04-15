@@ -35,16 +35,12 @@ class StudioSeeder extends Seeder
             [
                 'name' => 'Lionsgate',
             ],
-
-
             [
                 'name' => 'Columbia Pictures',
             ],
             [
                 'name' => 'DreamWorks',
             ],
-
-
             [
                 'name' => 'A-1 Pictures',
             ],
