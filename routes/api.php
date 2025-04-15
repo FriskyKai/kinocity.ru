@@ -83,5 +83,6 @@ Route::middleware('auth:api')->post('/reviews/{id}', [ReviewController::class, '
 // Маршруты для Избранных
 Route::middleware('auth:api')->apiResource('favorites', FavoriteController::class)->except( 'update');
 Route::middleware('auth:api')->get('/favorites/{media_id}/exist', [FavoriteController::class, 'isFavorite']);
+Route::middleware('auth:api')->get('/favorites/media/{media_id}', [FavoriteController::class, 'destroyByMedia']);
 
 

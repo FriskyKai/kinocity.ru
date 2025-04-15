@@ -41,6 +41,6 @@ class MediaGenreWebController extends Controller
 
         $record->delete();
 
-        return redirect()->route('media.show', $mediaId)->with('success', 'Актёр удалён.');
+        return redirect()->route('media.show', $mediaId)->with('success', 'Жанр удалён.');
     }
 }

@@ -77,6 +77,6 @@ class FootageWebController extends Controller
 
         $footage->delete();
 
-        return redirect()->route('media.show', $mediaId)->with('success', 'Актёр удалён.');
+        return redirect()->route('media.show', $mediaId)->with('success', 'Кадр удалён.');
     }
 }

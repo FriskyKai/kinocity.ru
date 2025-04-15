@@ -94,7 +94,4 @@ Route::post('/footages/edit/{id}', [FootageWebController::class, 'update'])->nam
 Route::get('/footages/delete/{id}', [FootageWebController::class, 'destroy'])->name('footages.destroy');
 
 // Маршруты для Медиа-кадров
-Route::get('/reviews', [ReviewWebController::class, 'index'])->name('reviews.index');
-Route::get('/reviews/edit/{id}', [ReviewWebController::class, 'edit'])->name('reviews.edit');
-Route::post('/reviews/edit/{id}', [ReviewWebController::class, 'update'])->name('reviews.update');
 Route::get('/reviews/delete/{id}', [ReviewWebController::class, 'destroy'])->name('reviews.destroy');

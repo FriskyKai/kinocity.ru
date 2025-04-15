@@ -14,6 +14,7 @@ use App\Models\Media;
 use App\Models\MediaActor;
 use App\Models\MediaDirector;
 use App\Models\MediaFootage;
+use App\Models\Review;
 use App\Models\Studio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,6 +55,8 @@ class MediaWebController extends Controller
     public function show(Media $media) {
         $footages = MediaFootage::where('media_id', $media->id)->get();
 
+        $reviews = Review::where('media_id', $media->id)->get();
+
         // Актёры через media_actors
         $actors = $media->mediaActors()->with('actor')->get()->pluck('actor');
 
@@ -63,7 +66,7 @@ class MediaWebController extends Controller
         // Жанры через media_genres
         $genres = $media->mediaGenres()->with('genre')->get()->pluck('genre');
 
-        return view('media.show', compact('media', 'footages', 'directors', 'actors', 'genres'));
+        return view('media.show', compact('media', 'footages', 'directors', 'actors', 'genres', 'reviews'));
     }
 
     public function edit(Media $media)
