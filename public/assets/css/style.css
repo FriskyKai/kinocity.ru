@@ -80,6 +80,11 @@ nav a:hover {
     height: 200px;
 }
 
+.footage-show {
+    width: 1080px;
+    height: 720px;
+}
+
 /*.main-background {*/
 /*    background: #FFFFFF;*/
 /*}*/

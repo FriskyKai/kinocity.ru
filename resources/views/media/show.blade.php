@@ -51,16 +51,16 @@
                     </div>
                 @endforeach
             </div>
-
             <div>
-                <a class="btn" href="{{ route('media-footages.create', ['media_id' => $media->id]) }}">Добавить кадр</a>
-                @foreach($footages as $footage)
-                    <img class="footage" src="{{ Str::startsWith($footage->photo, 'assets/') ? asset($footage->photo) : asset('storage/' . $footage->photo) }}" alt="Кадр"/>
-                @endforeach
+                <div>
+                    @foreach($footages as $footage)
+                        <a href="{{ route('footages.show', $footage->id) }}">
+                            <img class="footage" src="{{ Str::startsWith($footage->photo, 'assets/') ? asset($footage->photo) : asset('storage/' . $footage->photo) }}" alt="Кадр"/>
+                        </a>
+                    @endforeach
+                </div>
+                <a class="btn" href="{{ route('footages.create', ['media_id' => $media->id]) }}">Добавить кадр</a>
             </div>
-
-
-            <div>СДЕЛАТЬ ДОБАВЛЕНИЕ/УДАЛЕНИЕ КАДРОВ</div>
         </div>
     </div>
 @endsection

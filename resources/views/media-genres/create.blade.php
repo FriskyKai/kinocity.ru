@@ -3,7 +3,7 @@
 @section('title', 'Добавление жанра к медиа')
 
 @section('content')
-    {{--    <a class="btn" href="/media/show/{{$mediaActor->media_id}}">Вернуться к медиа</a>--}}
+    <a class="btn" href="/media/show/{{$media->id}}">Вернуться к медиа</a>
 
     <form class="flex border" action="{{ route('media-genres.store') }}" method="POST" enctype="application/x-www-form-urlencoded">
         @csrf

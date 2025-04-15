@@ -267,7 +267,7 @@ class MediaSeeder extends Seeder
                 'rating' => 7.7,
                 'episodes' => null,
                 'preview' => 'assets/images/photos/previews/johnwick.jpg',
-                'contentURL' => ', https://rutube.ru/video/2d1125f421694eb912aaba7522e8dd20/',
+                'contentURL' => 'https://rutube.ru/video/2d1125f421694eb912aaba7522e8dd20/',
                 'studio_id' => 8,
                 'age_rating_id' => 5,
             ],

@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\MediaActorWebController;
 use App\Http\Controllers\Web\MediaDirectorWebController;
 use App\Http\Controllers\Web\MediaGenreWebController;
 use App\Http\Controllers\Web\MediaWebController;
+use App\Http\Controllers\Web\ReviewWebController;
 use App\Http\Controllers\Web\StudioWebController;
 use App\Http\Controllers\Web\UserWebController;
 use Illuminate\Support\Facades\Route;
@@ -85,6 +86,15 @@ Route::post('/media-actors/create', [MediaActorWebController::class, 'store'])->
 Route::get('/media-actors/delete/{id}', [MediaActorWebController::class, 'destroy'])->name('media-actors.destroy');
 
 // Маршруты для Медиа-кадров
-Route::get('/media-footages/create', [FootageWebController::class, 'create'])->name('media-footages.create');
-Route::post('/media-footages/create', [FootageWebController::class, 'store'])->name('media-footages.store');
-Route::get('/media-footages/delete/{id}', [FootageWebController::class, 'destroy'])->name('media-footages.destroy');
+Route::get('/footages/show/{id}', [FootageWebController::class, 'show'])->name('footages.show');
+Route::get('/footages/create', [FootageWebController::class, 'create'])->name('footages.create');
+Route::post('/footages/create', [FootageWebController::class, 'store'])->name('footages.store');
+Route::get('/footages/edit/{id}', [FootageWebController::class, 'edit'])->name('footages.edit');
+Route::post('/footages/edit/{id}', [FootageWebController::class, 'update'])->name('footages.update');
+Route::get('/footages/delete/{id}', [FootageWebController::class, 'destroy'])->name('footages.destroy');
+
+// Маршруты для Медиа-кадров
+Route::get('/reviews', [ReviewWebController::class, 'index'])->name('reviews.index');
+Route::get('/reviews/edit/{id}', [ReviewWebController::class, 'edit'])->name('reviews.edit');
+Route::post('/reviews/edit/{id}', [ReviewWebController::class, 'update'])->name('reviews.update');
+Route::get('/reviews/delete/{id}', [ReviewWebController::class, 'destroy'])->name('reviews.destroy');
