@@ -117,11 +117,11 @@ class MediaWebController extends Controller
 
             DB::commit();
 
-            return response()->json('Медиа удалено успешно.')->setStatusCode(200);
+            return redirect()->route('media.index');
         } catch (\Exception $e) {
             DB::rollBack();
 
-            return response()->json('Ошибка удаления медиа: ' . $e->getMessage(), 500);
+            return redirect()->route('media.index');
         }
     }
 }

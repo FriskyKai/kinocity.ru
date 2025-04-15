@@ -50,7 +50,7 @@ class FavoriteController extends Controller
             ->first();
 
         if ($favorite) {
-            $favorite->delete();
+            Favorite::destroy($favorite->id);
             return 1;
         }
 

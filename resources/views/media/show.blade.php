@@ -12,7 +12,7 @@
     <div class="flex border">
         <div>
             <div class="flex">
-                <img src="{{ Str::startsWith($media->preview, 'assets/') ? asset($media->preview) : asset('storage/' . $media->preview) }}" alt="Превью" width="300"/>
+                <img class="big-photo" src="{{ Str::startsWith($media->preview, 'assets/') ? asset($media->preview) : asset('storage/' . $media->preview) }}" alt="Превью"/>
                 <div class="media-info">
                     <div>Название: {{ $media->name }}</div>
                     <div>Описание: {{ $media->description }}</div>

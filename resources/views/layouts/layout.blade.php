@@ -13,16 +13,14 @@
 
 <header>
     <nav class="flex center">
-        <div>
-            <img src="{{ asset('assets/images/logos/cinema.svg') }}" alt="Логотип" width="75"/>
-        </div>
+        <img src="{{ asset('assets/images/logos/cinema.svg') }}" alt="Логотип" width="75"/>
         <ul>
-            <li><a class="nav-page" href="{{ route('users.index') }}">Пользователи</a></li>
-            <li><a class="nav-page" href="{{ route('media.index') }}">Медиа-каталог</a></li>
-            <li><a class="nav-page" href="{{ route('studios.index') }}">Студии</a></li>
-            <li><a class="nav-page" href="{{ route('directors.index') }}">Режиссёры</a></li>
-            <li><a class="nav-page" href="{{ route('actors.index') }}">Актёры</a></li>
-            <li><a class="nav-page" href="{{ route('genres.index') }}">Жанры</a></li>
+            <li><a class="nav-page btn btn-nav" href="{{ route('users.index') }}">Пользователи</a></li>
+            <li><a class="nav-page btn btn-nav" href="{{ route('media.index') }}">Медиа-каталог</a></li>
+            <li><a class="nav-page btn btn-nav" href="{{ route('studios.index') }}">Студии</a></li>
+            <li><a class="nav-page btn btn-nav" href="{{ route('directors.index') }}">Режиссёры</a></li>
+            <li><a class="nav-page btn btn-nav" href="{{ route('actors.index') }}">Актёры</a></li>
+            <li><a class="nav-page btn btn-nav" href="{{ route('genres.index') }}">Жанры</a></li>
         </ul>
     </nav>
 </header>

@@ -14,45 +14,47 @@
             </script>
         @endif
 
-        <div>
-            <img src="{{ Str::startsWith($director->photo, 'assets/') ? asset($director->photo) : asset('storage/' . $director->photo) }}" alt="Фото" width="75"/>
-            <div>
-                @error('photo')
+        <div class="flex">
+            <img class="big-photo" src="{{ Str::startsWith($director->photo, 'assets/') ? asset($director->photo) : asset('storage/' . $director->photo) }}" alt="Фото"/>
+            <div class="media-info">
+                <div>
+                    @error('photo')
                     <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>Фото:</label>
-                <input name="photo" type="file">
-            </div>
-            <div>
-                @error('surname')
+                    @enderror
+                    <label>Фото:</label>
+                    <input name="photo" type="file">
+                </div>
+                <div>
+                    @error('surname')
                     <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>Фамилия:</label>
-                <input name="surname" type="text" placeholder="Введите фамилию" value="{{ $director->surname }}">
-            </div>
-            <div>
-                @error('name')
+                    @enderror
+                    <label>Фамилия:</label>
+                    <input name="surname" type="text" placeholder="Введите фамилию" value="{{ $director->surname }}">
+                </div>
+                <div>
+                    @error('name')
                     <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>Имя:</label>
-                <input name="name" type="text" placeholder="Введите имя" value="{{ $director->name }}">
-            </div>
-            <div>
-                @error('birthday')
+                    @enderror
+                    <label>Имя:</label>
+                    <input name="name" type="text" placeholder="Введите имя" value="{{ $director->name }}">
+                </div>
+                <div>
+                    @error('birthday')
                     <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>Дата рождения:</label>
-                <input name="birthday" type="date" value="{{ $director->birthday }}">
-            </div>
-            <div>
-                @error('bio')
+                    @enderror
+                    <label>Дата рождения:</label>
+                    <input name="birthday" type="date" value="{{ $director->birthday }}">
+                </div>
+                <div>
+                    @error('bio')
                     <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>Биография:</label>
-                <input name="bio" type="text" placeholder="Введите биографию" value="{{ $director->bio }}">
-            </div>
+                    @enderror
+                    <label>Биография:</label>
+                    <input name="bio" type="text" placeholder="Введите биографию" value="{{ $director->bio }}">
+                </div>
 
-            <button class="btn" type="submit">Обновить режиссёра</button>
+                <button class="btn" type="submit">Обновить режиссёра</button>
+            </div>
         </div>
     </form>
 @endsection

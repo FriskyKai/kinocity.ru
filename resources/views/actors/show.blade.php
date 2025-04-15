@@ -8,12 +8,14 @@
     <a class="btn" href="/actors/delete/{{$actor->id}}">Удалить актёра</a>
 
     <div class="flex border">
-        <div>
-            <img src="{{ Str::startsWith($actor->photo, 'assets/') ? asset($actor->photo) : asset('storage/' . $actor->photo) }}" alt="Фото" width="75"/>
-            <div>Фамилия: {{ $actor->surname }}</div>
-            <div>Имя: {{ $actor->name }}</div>
-            <div>Дата рождения: {{ $actor->birthday }}</div>
-            <div>Биография: {{ $actor->bio }}</div>
+        <div class="flex">
+            <img class="big-photo" src="{{ Str::startsWith($actor->photo, 'assets/') ? asset($actor->photo) : asset('storage/' . $actor->photo) }}" alt="Фото"/>
+            <div class="media-info">
+                <div>Фамилия: {{ $actor->surname }}</div>
+                <div>Имя: {{ $actor->name }}</div>
+                <div>Дата рождения: {{ $actor->birthday }}</div>
+                <div>Биография: {{ $actor->bio }}</div>
+            </div>
         </div>
     </div>
 @endsection

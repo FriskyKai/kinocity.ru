@@ -5,7 +5,7 @@
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 .flex {
@@ -13,8 +13,7 @@ a {
 }
 
 body {
-    background-color: #00316B;
-    color: white;
+    background-color: #E6F2FF;
 }
 
 nav {
@@ -39,7 +38,12 @@ nav a {
 }
 
 nav a:hover {
-    color: gray;
+    color: white;
+}
+
+nav img {
+    margin-left: 20px;
+    width: 50px;
 }
 
 .border {
@@ -80,13 +84,28 @@ nav a:hover {
     color: white;
 }
 
+.btn-nav {
+    background-color: #E6F2FF;
+    color: black;
+}
+
 .btn:hover {
-    background-color: #e6d7cc;
+    background-color: #0a83ef;
+}
+
+.big-photo {
+    width: 300px;
+    border-radius: 20px;
+}
+
+.small-photo {
+    width: 150px;
 }
 
 .footage {
     width: 300px;
     height: 200px;
+    border-radius: 20px;
 }
 
 .footage-show {
@@ -110,6 +129,8 @@ nav a:hover {
     width: 80vw;
     margin: 20px;
 }
+
+
 
 
 

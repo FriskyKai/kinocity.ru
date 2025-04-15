@@ -96,6 +96,13 @@
                 <label>* Кол-во серий (1 - если фильм):</label>
                 <input name="episodes" type="number" placeholder="Введите кол-во серий" min="1" required>
             </div>
+            <div>
+                @error('contentURL')
+                <p class="warning">{{ $message }}</p>
+                @enderror
+                <label>* Ссылка на контент:</label>
+                <input name="contentURL" type="text" placeholder="Введите ссылку" required>
+            </div>
 
             <button class="btn" type="submit">Добавить медиа</button>
         </div>

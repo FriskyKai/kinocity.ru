@@ -8,13 +8,15 @@
     <a class="btn" href="/users/delete/{{$user->id}}">Удалить пользователя</a>
 
     <div class="flex border">
-        <div>
-            <img src="{{ Str::startsWith($user->avatar, 'assets/') ? asset($user->avatar) : asset('storage/' . $user->avatar) }}" alt="Аватар" width="75"/>
-            <div>Роль: {{ $user->role->name }}</div>
-            <div>Фамилия: {{ $user->surname }}</div>
-            <div>Имя: {{ $user->name }}</div>
-            <div>Email: {{ $user->email }}</div>
-            <div>Дата рождения: {{ $user->birthday }}</div>
+        <div class="flex">
+            <img class="big-photo" src="{{ Str::startsWith($user->avatar, 'assets/') ? asset($user->avatar) : asset('storage/' . $user->avatar) }}" alt="Аватар"/>
+            <div class="media-info">
+                <div>Роль: {{ $user->role->name }}</div>
+                <div>Фамилия: {{ $user->surname }}</div>
+                <div>Имя: {{ $user->name }}</div>
+                <div>Email: {{ $user->email }}</div>
+                <div>Дата рождения: {{ $user->birthday }}</div>
+            </div>
         </div>
     </div>
 @endsection
