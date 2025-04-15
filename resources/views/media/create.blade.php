@@ -20,7 +20,10 @@
                     <p class="warning">{{ $message }}</p>
                 @enderror
                 <label>* Превью:</label>
-                <input name="preview" type="file">
+                <div class="file-upload">
+                    <input type="file" id="fileInput" name="preview" class="file-input">
+                    <label for="fileInput" class="file-button">Обзор</label>
+                </div>
             </div>
             <div>
                 @error('name')
@@ -98,7 +101,7 @@
             </div>
             <div>
                 @error('contentURL')
-                <p class="warning">{{ $message }}</p>
+                    <p class="warning">{{ $message }}</p>
                 @enderror
                 <label>* Ссылка на контент:</label>
                 <input name="contentURL" type="text" placeholder="Введите ссылку" required>

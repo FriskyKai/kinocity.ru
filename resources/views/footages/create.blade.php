@@ -21,7 +21,10 @@
                     <p class="warning">{{ $message }}</p>
                 @enderror
                 <label>* Загрузите кадр:</label>
-                <input name="photo" type="file" required>
+                <div class="file-upload">
+                    <input type="file" id="fileInput" name="photo" class="file-input" required>
+                    <label for="fileInput" class="file-button">Обзор</label>
+                </div>
             </div>
 
             <button class="btn" type="submit">Добавить кадр</button>

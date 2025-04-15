@@ -125,14 +125,89 @@ nav img {
     margin-left: 25px;
 }
 
+.media-info > * {
+    margin-bottom: 10px;
+}
+
 .media-module {
     width: 80vw;
     margin: 20px;
 }
 
+input {
+    border-radius: 5px;
+    padding: 5px;
+}
 
+/* Стили для контейнера */
+select, input {
+    appearance: none; /* Убираем стандартный вид */
+    background: #ffffff; /* Белый фон */
+    border: 2px solid #1e90ff; /* Синяя обводка */
+    border-radius: 8px; /* Скругленные углы */
+    padding: 5px 10px; /* Внутренние отступы */
+    font-size: 14px; /* Размер шрифта */
+    color: #1e90ff; /* Синий текст */
+    width: 200px; /* Ширина списка */
+    cursor: pointer; /* Курсор как при наведении */
+    outline: none; /* Убираем фокус при клике */
+    transition: all 0.3s ease; /* Плавная анимация */
+}
 
+/* Эффект при наведении */
+input:hover, select:hover {
+    border-color: #0066cc; /* Тёмно-синяя обводка */
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.3); /* Лёгкая тень */
+}
 
+/* Стили для опций */
+select option {
+    background: #ffffff; /* Белый фон опций */
+    color: #1e90ff; /* Синий текст */
+}
 
+/* Стрелка справа */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%231e90ff' viewBox='0 0 16 16'%3E%3Cpath d='M8 12a1 1 0 0 1-.707-.293l-4-4a1 1 0 1 1 1.414-1.414L8 9.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4A1 1 0 0 1 8 12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Положение стрелки */
+}
+
+input:focus, select:focus {
+    border-color: #0066cc;
+}
+
+.file-upload {
+    position: relative;
+    display: inline-block;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-button {
+    appearance: none;
+    background: #ffffff;
+    border: 2px solid #1e90ff;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #1e90ff;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.file-button:hover {
+    border-color: #0066cc;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+}
+
+.file-button:active {
+    background: #1e90ff;
+    color: #ffffff;
+}
 
 

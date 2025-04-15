@@ -20,7 +20,10 @@
                    <p class="warning">{{ $message }}</p>
                 @enderror
                 <label>Аватар:</label>
-                <input name="avatar" type="file">
+                <div class="file-upload">
+                    <input type="file" id="fileInput" name="avatar" class="file-input">
+                    <label for="fileInput" class="file-button">Обзор</label>
+                </div>
             </div>
             <div>
                 @error('surname')
