@@ -25,7 +25,7 @@
     </nav>
 </header>
 
-<main>
+<main class="content-center">
     @yield('content')
 </main>
 

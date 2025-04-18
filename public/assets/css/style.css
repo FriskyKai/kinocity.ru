@@ -48,8 +48,12 @@ nav img {
 
 .border {
     border: 1px solid black;
+    box-sizing: border-box;
     margin: 20px;
     padding: 20px;
+    min-width: 50vw;
+    width: fit-content;
+    border-radius: 10px;
 }
 
 .border:hover {
@@ -69,6 +73,12 @@ nav img {
 
 .center {
     align-items: center;
+}
+
+.content-center {
+    min-width: 50vw;
+    width: fit-content;
+    margin: 0 auto;
 }
 
 .nav-page {
