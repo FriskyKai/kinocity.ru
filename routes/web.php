@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\Web\ActorWebController;
 use App\Http\Controllers\Web\DirectorWebController;
 use App\Http\Controllers\Web\FootageWebController;
@@ -8,13 +9,15 @@ use App\Http\Controllers\Web\MediaActorWebController;
 use App\Http\Controllers\Web\MediaDirectorWebController;
 use App\Http\Controllers\Web\MediaGenreWebController;
 use App\Http\Controllers\Web\MediaWebController;
-use App\Http\Controllers\Web\ReviewWebController;
 use App\Http\Controllers\Web\StudioWebController;
 use App\Http\Controllers\Web\UserWebController;
+use App\Models\Media;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    $mediaCatalog = Media::all();
+
+    return view('media.index', compact('mediaCatalog'));
 });
 
 // Маршруты для Пользователей
