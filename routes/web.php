@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\MediaActorWebController;
 use App\Http\Controllers\Web\MediaDirectorWebController;
 use App\Http\Controllers\Web\MediaGenreWebController;
 use App\Http\Controllers\Web\MediaWebController;
+use App\Http\Controllers\Web\ReviewWebController;
 use App\Http\Controllers\Web\StudioWebController;
 use App\Http\Controllers\Web\UserWebController;
 use App\Models\Media;

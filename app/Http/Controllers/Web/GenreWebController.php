@@ -10,15 +10,25 @@ use Illuminate\Http\Request;
 
 class GenreWebController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return view('genres.create');
+        $mediaId = $request->query('media_id');
+
+        return view('genres.create', compact('mediaId'));
     }
 
-    public function store(GenreCreateRequest $request) {
+    public function store(GenreCreateRequest $request)
+    {
         $genre = Genre::create($request->all());
 
-        return redirect()->route('genres.index');
+        // Проверяем, был ли передан media_id для возврата на media-genres.create
+        if ($request->filled('media_id')) {
+            return redirect()->route('media-genres.create', ['media_id' => $request->media_id])
+                ->with('success', 'Жанр успешно создан. Теперь вы можете привязать его к медиа.');
+        }
+
+        // Если нет media_id — стандартный редирект, например, в список жанров
+        return redirect()->route('genres.index')->with('success', 'Жанр успешно создан.');
     }
 
     public function index()

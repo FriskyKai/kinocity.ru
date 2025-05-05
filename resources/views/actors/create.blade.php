@@ -14,6 +14,9 @@
         @endif
 
         <div>
+            @if(request('media_id'))
+                <input type="hidden" name="media_id" value="{{ request('media_id') }}">
+            @endif
             <p>* - Обязательное поле</p>
             <div>
                 @error('photo')

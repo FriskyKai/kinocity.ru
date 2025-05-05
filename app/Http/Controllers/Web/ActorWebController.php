@@ -16,10 +16,10 @@ class ActorWebController extends Controller
         return view('actors.create');
     }
 
-    public function store(BiographyCreateRequest $request) {
+    public function store(BiographyCreateRequest $request)
+    {
         $data = $request->validated();
 
-        // Обработка photo-файла
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('photos', 'public');
             $data['photo'] = $path;
@@ -27,7 +27,13 @@ class ActorWebController extends Controller
 
         $actor = Actor::create($data);
 
-        return redirect()->route('actors.index');
+        // Вернуться к форме привязки к медиа
+        if ($request->filled('media_id')) {
+            return redirect()->route('media-actors.create', ['media_id' => $request->media_id])
+                ->with('success', 'Актёр успешно создан. Теперь вы можете привязать его к медиа.');
+        }
+
+        return redirect()->route('actors.index')->with('success', 'Актёр успешно создан.');
     }
 
     public function index()

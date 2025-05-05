@@ -23,9 +23,10 @@
                 <label>* Выберите актёра:</label>
                 <select name="actor_id">
                     @foreach($actors as $actor)
-                        <option value="{{ $actor->id }}">{{ $actor->name }}</option>
+                        <option value="{{ $actor->id }}">{{ $actor->name }} {{ $actor->surname }}</option>
                     @endforeach
                 </select>
+                <a class="btn btn-do" href="{{ route('actors.create', ['media_id' => $media->id]) }}">Добавить нового актёра</a>
             </div>
 
             <button class="btn" type="submit">Добавить актёра</button>

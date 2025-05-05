@@ -16,10 +16,10 @@ class DirectorWebController extends Controller
         return view('directors.create');
     }
 
-    public function store(BiographyCreateRequest $request) {
+    public function store(BiographyCreateRequest $request)
+    {
         $data = $request->validated();
 
-        // Обработка photo-файла
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('photos', 'public');
             $data['photo'] = $path;
@@ -27,7 +27,12 @@ class DirectorWebController extends Controller
 
         $director = Director::create($data);
 
-        return redirect()->route('directors.index');
+        if ($request->filled('media_id')) {
+            return redirect()->route('media-directors.create', ['media_id' => $request->media_id])
+                ->with('success', 'Режиссёр успешно создан. Теперь вы можете привязать его к медиа.');
+        }
+
+        return redirect()->route('directors.index')->with('success', 'Режиссёр успешно создан.');
     }
 
     public function index()

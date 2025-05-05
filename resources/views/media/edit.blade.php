@@ -99,14 +99,14 @@
                         <p class="warning">{{ $message }}</p>
                     @enderror
                     <label>Кол-во серий (Пустое или 1 - если фильм):</label>
-                    <input name="episodes" type="number" placeholder="Введите кол-во серий" min="1" value="{{ $media->episodes }}">
+                    <input name="episodes" type="number" placeholder="Введите кол-во серий" min="1" value="{{ $media->episodes == '' ? '1' : $media->episodes}}">
                 </div>
                 <div>
                     @error('contentURL')
                         <p class="warning">{{ $message }}</p>
                     @enderror
                     <label>Ссылка на контент:</label>
-                    <input name="contentURL" type="text" placeholder="Введите ссылку" required>
+                    <input name="contentURL" type="text" placeholder="Введите ссылку" required value="{{ $media->contentURL }}">
                 </div>
 
                 <button class="btn" type="submit">Обновить медиа</button>

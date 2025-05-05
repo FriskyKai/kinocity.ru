@@ -20,7 +20,7 @@
                     <p class="warning">{{ $message }}</p>
                 @enderror
                 <label>Название студии:</label>
-                <input name="name" type="text" placeholder="Введите название">
+                <input name="name" type="text" placeholder="Введите название" value="{{ $studio->name }}">
             </div>
 
             <button class="btn" type="submit">Обновить студию</button>

@@ -14,6 +14,9 @@
         @endif
 
         <div>
+            @if (!empty($mediaId))
+                <input type="hidden" name="media_id" value="{{ $mediaId }}">
+            @endif
             <p>* - Обязательное поле</p>
             <div>
                 @error('name')
@@ -27,3 +30,4 @@
         </div>
     </form>
 @endsection
+

@@ -20,7 +20,7 @@
                     <p class="warning">{{ $message }}</p>
                 @enderror
                 <label>Название жанра:</label>
-                <input name="name" type="text" placeholder="Введите название">
+                <input name="name" type="text" placeholder="Введите название" value="{{ $genre->name }}">
             </div>
 
             <button class="btn" type="submit">Обновить жанр</button>

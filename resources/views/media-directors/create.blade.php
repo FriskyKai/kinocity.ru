@@ -23,9 +23,10 @@
                 <label>* Выберите режиссёра:</label>
                 <select name="director_id">
                     @foreach($directors as $director)
-                        <option value="{{ $director->id }}">{{ $director->name }}</option>
+                        <option value="{{ $director->id }}">{{ $director->name }} {{ $director->surname }}</option>
                     @endforeach
                 </select>
+                <a class="btn btn-do" href="{{ route('directors.create', ['media_id' => $media->id]) }}">Добавить нового режиссёра</a>
             </div>
 
             <button class="btn" type="submit">Добавить режиссёра</button>

@@ -26,6 +26,7 @@
                         <option value="{{ $genre->id }}">{{ $genre->name }}</option>
                     @endforeach
                 </select>
+                <a class="btn btn-do" href="{{ route('genres.create', ['media_id' => $media->id]) }}">Создать новый жанр</a>
             </div>
 
             <button class="btn" type="submit">Добавить жанр</button>
