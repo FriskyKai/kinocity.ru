@@ -25,6 +25,9 @@ class MediaDirectorSeeder extends Seeder
             ['director_id' => 3, 'media_id' => 3],
             ['director_id' => 3, 'media_id' => 13],
             ['director_id' => 3, 'media_id' => 14],
+
+            // Тосимаса Исии
+            ['director_id' => 6, 'media_id' => 21],
         ]);
     }
 }

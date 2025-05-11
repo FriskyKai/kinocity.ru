@@ -40,6 +40,11 @@ class Media extends Model
         return $this->hasMany(Review::class);
     }
 
+    // Связь с сериями
+    public function series() {
+        return $this->hasMany(Series::class);
+    }
+
     // Связь с медиа_режиссёрами
     public function mediaDirectors() {
         return $this->hasMany(MediaDirector::class);

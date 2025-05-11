@@ -6,12 +6,12 @@
     <a class="btn" href="{{ route('media.create') }}">Добавить медиа</a>
     @foreach($mediaCatalog as $media)
         <a href="/media/show/{{$media->id}}">
-            <div class="flex border">
+            <div class="flex border media-card">
                 <div class="flex">
                     <img class="small-photo" src="{{ Str::startsWith($media->preview, 'assets/') ? asset($media->preview) : asset('storage/' . $media->preview) }}" alt="Превью"/>
                     <div class="media-info">
                         <div>Название: {{ $media->name }}</div>
-                        <div>Описание: {{ $media->description }}</div>
+                        <div class="description">Описание: {{ $media->description }}</div>
                         <div>Тип: {{ $media->type ? 'Сериал' : 'Фильм' }}</div>
                         <div>Студия: {{ $media->studio->name }}</div>
                         <div>Возр.рейтинг: {{ $media->ageRating->age }}</div>
@@ -25,3 +25,5 @@
         </a>
     @endforeach
 @endsection
+
+

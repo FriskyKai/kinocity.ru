@@ -12,6 +12,7 @@ use App\Http\Controllers\MediaDirectorController;
 use App\Http\Controllers\MediaGenreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SeriesController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckRole;
@@ -62,7 +63,12 @@ Route::middleware(['auth:api', CheckRole::class . ':admin'])->apiResource('media
 Route::middleware(['auth:api', CheckRole::class . ':admin'])->post('/media/{id}', [MediaController::class, 'update']);
 Route::get('/media', [MediaController::class, 'index']);
 Route::get('/media/{id}', [MediaController::class, 'show']);
-// Route::get('') || просмотр медиа
+
+// Маршруты для Серий медиа
+Route::middleware(['auth:api', CheckRole::class . ':admin'])->apiResource('series', SeriesController::class)->except('index', 'show');
+Route::middleware(['auth:api', CheckRole::class . ':admin'])->post('/series/{id}', [SeriesController::class, 'update']);
+Route::get('/series', [SeriesController::class, 'index']);
+Route::get('/series/show', [SeriesController::class, 'show']);
 
 // Маршруты для связей с Медиа-каталогом
 Route::middleware('auth:api')->apiResource('media_genres', MediaGenreController::class)->except('show', 'update');

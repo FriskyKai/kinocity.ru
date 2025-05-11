@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\MediaDirectorWebController;
 use App\Http\Controllers\Web\MediaGenreWebController;
 use App\Http\Controllers\Web\MediaWebController;
 use App\Http\Controllers\Web\ReviewWebController;
+use App\Http\Controllers\Web\SeriesWebController;
 use App\Http\Controllers\Web\StudioWebController;
 use App\Http\Controllers\Web\UserWebController;
 use App\Models\Media;
@@ -88,6 +89,15 @@ Route::get('/media-directors/delete/{id}', [MediaDirectorWebController::class, '
 Route::get('/media-actors/create', [MediaActorWebController::class, 'create'])->name('media-actors.create');
 Route::post('/media-actors/create', [MediaActorWebController::class, 'store'])->name('media-actors.store');
 Route::get('/media-actors/delete/{id}', [MediaActorWebController::class, 'destroy'])->name('media-actors.destroy');
+
+// Маршруты для Серий медиа
+Route::get('/series', [SeriesWebController::class, 'index'])->name('series.index');
+Route::get('/series/show', [SeriesWebController::class, 'show'])->name('series.show');
+Route::get('/series/create', [SeriesWebController::class, 'create'])->name('series.create');
+Route::post('/series/create', [SeriesWebController::class, 'store'])->name('series.store');
+Route::get('/series/edit/{series}', [SeriesWebController::class, 'edit'])->name('series.edit');
+Route::post('/series/edit/{series}', [SeriesWebController::class, 'update'])->name('series.update');
+Route::get('/series/delete/{series}', [SeriesWebController::class, 'destroy'])->name('series.destroy');
 
 // Маршруты для Медиа-кадров
 Route::get('/footages/show/{id}', [FootageWebController::class, 'show'])->name('footages.show');

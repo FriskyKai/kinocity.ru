@@ -47,8 +47,8 @@
                     @enderror
                     <label>Тип медиа:</label>
                     <select name="type">
-                        <option value="0" selected>Фильм</option>
-                        <option value="1">Сериал</option>
+                        <option value="0" {{ $media->type == 0 ? 'selected' : '' }}>Фильм</option>
+                        <option value="1" {{ $media->type == 1 ? 'selected' : '' }}>Сериал</option>
                     </select>
                 </div>
                 <div>
@@ -58,7 +58,9 @@
                     <label>Студия:</label>
                     <select name="studio_id">
                         @foreach($studios as $studio)
-                            <option value="{{ $studio->id }}">{{ $studio->name }}</option>
+                            <option value="{{ $studio->id }}" {{ $media->studio_id == $studio->id ? 'selected' : '' }}>
+                                {{ $studio->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -69,7 +71,9 @@
                     <label>Возр.рейтинг:</label>
                     <select name="age_rating_id">
                         @foreach($ageRatings as $ageRating)
-                            <option value="{{ $ageRating->id }}">{{ $ageRating->age }}</option>
+                            <option value="{{ $ageRating->id }}" {{ $media->age_rating_id == $ageRating->id ? 'selected' : '' }}>
+                                {{ $ageRating->age }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

@@ -46,6 +46,13 @@ class DirectorSeeder extends Seeder
                 'bio' => 'Американский режиссёр, продюсер и мультипликатор',
                 'photo' => 'assets/images/photos/directors/berton.jpg',
             ],
+            [
+                'surname' => 'Исии',
+                'name' => 'Тосимаса',
+                'birthday' => '2000-12-12',
+                'bio' => 'Японский режиссёр аниме',
+                'photo' => 'assets/images/photos/directors/toshimasa.jpg',
+            ],
         ]);
     }
 }

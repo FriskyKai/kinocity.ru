@@ -97,6 +97,11 @@ class MediaGenreSeeder extends Seeder
             // Джон Уик 4
             ['media_id' => 20, 'genre_id' => 1],
             ['media_id' => 20, 'genre_id' => 5],
+
+            // Восемьдесят-шесть (86)
+            ['media_id' => 21, 'genre_id' => 1],
+            ['media_id' => 21, 'genre_id' => 7],
+            ['media_id' => 21, 'genre_id' => 10],
         ]);
     }
 }

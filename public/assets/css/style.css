@@ -125,6 +125,7 @@ nav img {
 
 .div85 {
     width: 85%;
+    overflow-wrap: break-word;
 }
 
 .div15 {
@@ -142,6 +143,49 @@ nav img {
 .media-module {
     width: 80vw;
     margin: 20px;
+}
+
+.media-card {
+    /* Фиксированная ширина или максимальная ширина */
+    width: 300px; /* или max-width: 300px; */
+
+    /* Фиксированная высота или минимальная высота */
+    min-height: 300px; /* или height: 400px; если нужно строго фиксировать */
+
+    /* Внутренние отступы */
+    padding: 15px;
+
+    /* Границы и тени для визуального разделения */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    /* Расположение элементов внутри */
+    display: flex;
+    flex-direction: column;
+
+    /* Чтобы карточки не растягивались */
+    flex-shrink: 0;
+
+    /* Перенос содержимого */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Стили для элементов внутри карточки */
+.media-card > * {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+/* Особый стиль для описания, чтобы переносилось */
+.media-card .description {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Ограничение количества строк */
+    -webkit-box-orient: vertical;
+    flex-grow: 1;
 }
 
 /* Стили для контейнера */
@@ -218,3 +262,13 @@ input:focus, select:focus {
     color: #ffffff;
 }
 
+.content-link {
+    color: #0066cc;
+    text-decoration: none;
+    word-break: break-all;
+    margin-left: 10px;
+}
+
+.content-link:hover {
+    text-decoration: underline;
+}

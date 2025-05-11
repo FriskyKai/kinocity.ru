@@ -65,6 +65,34 @@
                     </div>
                 @endforeach
             </div>
+            <div class="media-module border-list">
+                <label>Содержимое медиа:</label>
+                @if($media->type == 0) <!-- Фильм -->
+                <div class="flex center">
+                    <p>Ссылка на фильм:</p>
+                    <a href="{{ $media->contentURL }}" target="_blank" class="content-link">
+                        {{ $media->contentURL }}
+                    </a>
+                </div>
+                @else <!-- Сериал -->
+                <a class="btn" href="{{ route('series.create', ['media_id' => $media->id]) }}">
+                    Добавить серию
+                </a>
+                @foreach($media->series as $series)
+                    <div class="flex center border-list">
+                        <div class="div85">
+                            <p>Серия {{ $series->series_number }}:</p>
+                            <a href="{{ $series->url }}" target="_blank" class="content-link">
+                                {{ $series->url }}
+                            </a>
+                        </div>
+                        <a class="btn" href="{{ route('series.destroy', ['series' => $series]) }}">
+                            Удалить
+                        </a>
+                    </div>
+                @endforeach
+                @endif
+            </div>
             <div class="media-module">
                 <label>Комментарии:</label>
                 @foreach($reviews as $review)

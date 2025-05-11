@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             MediaDirectorSeeder::class,
             FavoriteSeeder::class,
             ReviewSeeder::class,
+            SeriesSeeder::class,
         ]);
     }
 }

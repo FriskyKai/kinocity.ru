@@ -326,6 +326,28 @@ class MediaFootageSeeder extends Seeder
                 'media_id' => 20,
                 'photo' => 'assets/images/photos/footages/johnwick/frame4.jpg',
             ],
+
+            // Восемьдесят-шесть (86)
+            [
+                'media_id' => 21,
+                'photo' => 'assets/images/photos/footages/86/frame1.jpg',
+            ],
+            [
+                'media_id' => 21,
+                'photo' => 'assets/images/photos/footages/86/frame2.jpg',
+            ],
+            [
+                'media_id' => 21,
+                'photo' => 'assets/images/photos/footages/86/frame3.jpg',
+            ],
+            [
+                'media_id' => 21,
+                'photo' => 'assets/images/photos/footages/86/frame4.jpg',
+            ],
+            [
+                'media_id' => 21,
+                'photo' => 'assets/images/photos/footages/86/frame5.jpg',
+            ],
         ]);
     }
 }
