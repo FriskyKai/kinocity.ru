@@ -1,0 +1,73 @@
+/* Базовые стили кнопок */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-size: 1rem;
+    position: relative;
+}
+
+/* Цветовые варианты */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background-color: #d90429;
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: var(--white);
+}
+
+/* Кнопки с иконками */
+.btn-icon {
+    padding-left: 2.5rem;
+}
+
+.btn-icon::before {
+    content: "+";
+    position: absolute;
+    left: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Можно добавить разные иконки через модификаторы */
+.btn-icon-edit::before { content: "✏️"; }
+.btn-icon-delete::before { content: "🗑"; }
+.btn-icon-view::before { content: "👁"; }
+
+/* Группа кнопок */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.form-actions {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}

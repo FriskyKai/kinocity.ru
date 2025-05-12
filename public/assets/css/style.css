@@ -3,86 +3,28 @@
     margin: 0;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}
-
-.flex {
-    display: flex;
-}
-
 body {
     background-color: #E6F2FF;
 }
 
-nav {
-    background-color: #046FD2;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-nav ul {
-    width: 90%;
-    display: flex;
-    justify-content: center;
-}
-
-nav li {
-    list-style-type: none;
-}
-
-nav a {
+a {
     text-decoration: none;
-    color: #FFFFFF;
-}
-
-nav a:hover {
-    color: white;
-}
-
-nav img {
-    margin-left: 20px;
-    width: 50px;
-}
-
-.border {
-    border: 1px solid black;
-    box-sizing: border-box;
-    margin: 20px;
-    padding: 20px;
-    min-width: 50vw;
-    width: fit-content;
-    border-radius: 10px;
-}
-
-.border:hover {
-    border: 1px solid dimgray;
-}
-
-.border-list {
-    border: 1px solid black;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 50px;
+    color: black;
 }
 
 .warning {
     color: red;
 }
 
-.center {
-    align-items: center;
+.content-link {
+    color: #0066cc;
+    text-decoration: none;
+    word-break: break-all;
+    margin-left: 10px;
 }
 
-.content-center {
-    min-width: 50vw;
-    width: fit-content;
-    margin: 0 auto;
-}
-
-.nav-page {
-    margin: 20px;
+.content-link:hover {
+    text-decoration: underline;
 }
 
 .btn {
@@ -92,6 +34,7 @@ nav img {
     padding: 10px;
     background-color: #046FD2;
     color: white;
+    transition: all 0.3s ease;
 }
 
 .btn-nav {
@@ -103,89 +46,62 @@ nav img {
     background-color: #0a83ef;
 }
 
-.big-photo {
-    width: 300px;
-    border-radius: 20px;
+.file-button {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    appearance: none;
+    background: #ffffff;
+    border: 2px solid #1e90ff;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #1e90ff;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
-.small-photo {
-    width: 150px;
+.file-button:hover {
+    border-color: #0066cc;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
 }
 
-.footage {
-    width: 300px;
-    height: 200px;
-    border-radius: 20px;
+.file-button:active {
+    background: #1e90ff;
+    color: #ffffff;
 }
 
-.footage-show {
-    width: 1080px;
-    height: 720px;
-}
-
-.div85 {
-    width: 85%;
-    overflow-wrap: break-word;
-}
-
-.div15 {
-    width: 15%;
-}
-
-.media-info {
-    margin-left: 25px;
-}
-
-.media-info > * {
-    margin-bottom: 10px;
-}
-
-.media-module {
-    width: 80vw;
-    margin: 20px;
+.file-upload {
+    position: relative;
+    display: inline-block;
 }
 
 .media-card {
-    /* Фиксированная ширина или максимальная ширина */
-    width: 300px; /* или max-width: 300px; */
-
-    /* Фиксированная высота или минимальная высота */
-    min-height: 300px; /* или height: 400px; если нужно строго фиксировать */
-
-    /* Внутренние отступы */
+    width: 300px;
+    min-height: 350px; /* Единая минимальная высота */
+    max-height: 450px; /* Ограничение максимальной высоты */
     padding: 15px;
-
-    /* Границы и тени для визуального разделения */
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-
-    /* Расположение элементов внутри */
     display: flex;
     flex-direction: column;
-
-    /* Чтобы карточки не растягивались */
-    flex-shrink: 0;
-
-    /* Перенос содержимого */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+    overflow: hidden; /* Важно для обрезки контента */
 }
 
-/* Стили для элементов внутри карточки */
 .media-card > * {
     margin-bottom: 10px;
     width: 100%;
 }
 
-/* Особый стиль для описания, чтобы переносилось */
 .media-card .description {
-    overflow: hidden;
-    text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Ограничение количества строк */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    flex-grow: 1;
+    overflow: hidden;
+    flex-grow: 0; /* Отключаем растягивание */
+    max-height: 4.5em; /* Резервное решение */
 }
 
 /* Стили для контейнера */
@@ -227,48 +143,119 @@ input:focus, select:focus {
     border-color: #0066cc;
 }
 
-.file-upload {
-    position: relative;
-    display: inline-block;
-}
-
 .file-input {
     display: none;
 }
 
-.file-button {
-    margin-bottom: 5px;
-    margin-top: 5px;
-    appearance: none;
-    background: #ffffff;
-    border: 2px solid #1e90ff;
-    border-radius: 8px;
-    padding: 5px 10px;
-    font-size: 16px;
-    color: #1e90ff;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.3s ease;
-    display: inline-block;
+.flex {
+    display: flex;
 }
 
-.file-button:hover {
-    border-color: #0066cc;
-    box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+.center {
+    align-items: center;
 }
 
-.file-button:active {
-    background: #1e90ff;
-    color: #ffffff;
+.content-center {
+    min-width: 50vw;
+    width: fit-content;
+    margin: 0 auto;
 }
 
-.content-link {
-    color: #0066cc;
+nav {
+    background-color: #046FD2;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+nav ul {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    list-style-type: none;
+}
+
+nav a {
     text-decoration: none;
-    word-break: break-all;
-    margin-left: 10px;
+    color: #FFFFFF;
 }
 
-.content-link:hover {
-    text-decoration: underline;
+nav a:hover {
+    color: white;
+}
+
+nav img {
+    margin-left: 20px;
+    width: 50px;
+}
+
+.nav-page {
+    margin: 20px;
+}
+
+.media-info {
+    min-width: 0;
+    max-width: 100%;
+    margin-left: 25px;
+}
+
+.media-info > * {
+    margin-bottom: 10px;
+}
+
+.media-module {
+    width: 80vw;
+    margin: 20px;
+}
+
+.big-photo {
+    width: 300px;
+    border-radius: 20px;
+}
+
+.small-photo {
+    width: 150px;
+}
+
+.footage {
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+.footage-show {
+    width: 1080px;
+    height: 720px;
+}
+
+.border {
+    border: 1px solid black;
+    box-sizing: border-box;
+    margin: 20px;
+    padding: 20px;
+    min-width: 50vw;
+    width: fit-content;
+    border-radius: 10px;
+}
+
+.border:hover {
+    border: 1px solid dimgray;
+}
+
+.border-list {
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 50px;
+}
+
+.div85 {
+    width: 85%;
+    overflow-wrap: break-word;
+}
+
+.div15 {
+    width: 15%;
 }

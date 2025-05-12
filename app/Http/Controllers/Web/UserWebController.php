@@ -94,7 +94,7 @@ class UserWebController extends Controller
 
             DB::commit();
 
-            return response()->json('Пользователь удалён успешно.')->setStatusCode(200);
+            return redirect()->route('users.index');
         } catch (\Exception $e) {
             DB::rollBack();
 

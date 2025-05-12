@@ -1,0 +1,94 @@
+.user-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    height: 100%;
+}
+
+.user-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.user-card:hover .card-avatar {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+}
+
+.user-card .card-title {
+    font-size: 1.2rem;
+}
+
+/* Профильная карточка */
+.profile-card {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-top: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.profile-avatar-container {
+    flex-shrink: 0;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-light);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.profile-title {
+    flex: 1;
+    min-width: 250px;
+}
+
+.profile-title h1 {
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--dark);
+}
+
+.profile-badge {
+    display: inline-block;
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem 0;
+}
+
+.profile-meta {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
