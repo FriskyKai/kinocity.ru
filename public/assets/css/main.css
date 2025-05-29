@@ -1,20 +1,29 @@
-/* Base */
-@import "base/reset.css";
-@import "base/variables.css";
-@import "base/globals.css";
-@import "base/typography.css";
+/* ============================
+   1. Base
+   ============================ */
+@import url('./base/reset.css');
+@import url('./base/variables.css');
+@import url('./base/typography.css');
+@import url('./base/globals.css');
 
-/* Components */
-@import "components/buttons.css";
-@import "components/forms.css";
-@import "components/cards.css";
-@import "components/utilities.css";
+/* ============================
+   2. Layout
+   ============================ */
+@import url('./layouts/grid.css');
+@import url('./layouts/header.css');
 
-/* Layouts */
-@import "layouts/header.css";
-@import "layouts/footer.css";
-@import "layouts/grid.css";
+/* ============================
+   3. Components
+   ============================ */
+@import url('./components/utilities.css');
+@import url('./components/buttons.css');
+@import url('./components/cards.css');
+@import url('./components/forms.css');
 
-/* Pages */
-@import "pages/users.css";
-@import "pages/media.css";
+/* ============================
+   4. Pages (уникальные стили)
+   ============================ */
+@import url('./pages/users.css');
+@import url('./pages/studios.css');
+@import url('./pages/genres.css');
+@import url('./pages/media.css');

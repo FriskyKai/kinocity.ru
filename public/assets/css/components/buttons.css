@@ -53,10 +53,18 @@
     line-height: 1;
 }
 
+.btn i {
+    margin-right: 0.5rem;
+}
+
 /* Можно добавить разные иконки через модификаторы */
 .btn-icon-edit::before { content: "✏️"; }
 .btn-icon-delete::before { content: "🗑"; }
 .btn-icon-view::before { content: "👁"; }
+.icon-plus::before { content: "+"; }
+.icon-star::before { content: "★"; }
+.icon-time::before { content: "⏱"; }
+.icon-calendar::before { content: "📅"; }
 
 /* Группа кнопок */
 .action-buttons {
@@ -70,4 +78,21 @@
     margin-top: 2rem;
     padding-top: 1rem;
     border-top: 1px solid var(--border);
+}
+
+/* Кнопка "Назад" */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.btn-back:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
 }

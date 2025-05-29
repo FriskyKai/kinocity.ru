@@ -1,0 +1,93 @@
+/* Стили для страницы жанров */
+.genres-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.genres-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.genres-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.genres-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.genre-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--border);
+}
+
+.genre-card:hover {
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.genre-content {
+    flex-grow: 1;
+}
+
+.genre-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 0 0.25rem 0;
+}
+
+.genre-meta {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+
+.icon-arrow-right {
+    color: var(--primary-color);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-size: 1.25rem;
+}
+
+.genre-card:hover .icon-arrow-right {
+    opacity: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .genres-container {
+        padding: 1.5rem;
+    }
+
+    .genres-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .genre-card {
+        padding: 1rem 1.25rem;
+    }
+}

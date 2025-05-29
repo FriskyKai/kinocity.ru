@@ -1,16 +1,24 @@
 /* Общие стили карточек */
 .card {
+    display: flex;
+    flex-direction: column;
     background: var(--white);
     border-radius: 8px;
-    box-shadow: var(--shadow);
     overflow: hidden;
+    box-shadow: var(--shadow);
     transition: var(--transition);
-    margin-bottom: 1rem;
+    text-decoration: none;
+    color: inherit;
 }
+
 
 .card:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1.5rem 1.5rem 0;
 }
 
 .cards-grid {
@@ -124,11 +132,6 @@
     margin-top: 2rem;
 }
 
-.avatar-preview {
-    width: 100%;
-    text-align: center;
-}
-
 .avatar-image {
     width: 200px;
     height: 200px;
@@ -136,7 +139,38 @@
     object-fit: cover;
     border: 4px solid var(--primary-light);
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    font-size: 0; /* скрываем стандартный alt текст */
+    font-size: 0;
+}
+
+/* Карточки студий */
+.studio-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+    margin-bottom: 0.75rem;
+}
+
+.studio-card:hover {
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.studio-arrow {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.studio-card:hover .studio-arrow {
+    opacity: 1;
 }
 
 @media (max-width: 768px) {
