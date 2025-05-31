@@ -37,9 +37,14 @@ class ActorWebController extends Controller
         return redirect()->route('actors.index')->with('success', 'Актёр успешно создан.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $actors = Actor::all();
+        $search = $request->input('search');
+
+        $actors = Actor::when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('surname', 'like', '%' . $search . '%');
+        })->get();
 
         return view('actors.index', compact('actors'));
     }

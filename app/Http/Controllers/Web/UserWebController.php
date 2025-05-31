@@ -40,9 +40,14 @@ class UserWebController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $search = $request->input('search');
+
+        $users = User::when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('surname', 'like', '%' . $search . '%');
+        })->get();
 
         return view('users.index', compact('users'));
     }

@@ -32,9 +32,13 @@ class GenreWebController extends Controller
         return redirect()->route('genres.index')->with('success', 'Жанр успешно создан.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $genres = Genre::all();
+        $search = $request->input('search');
+
+        $genres = Genre::when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->get();
 
         return view('genres.index', compact('genres'));
     }

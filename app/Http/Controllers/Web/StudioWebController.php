@@ -21,9 +21,13 @@ class StudioWebController extends Controller
         return redirect()->route('studios.index');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $studios = Studio::all();
+        $search = $request->input('search');
+
+        $studios = Studio::when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->get();
 
         return view('studios.index', compact('studios'));
     }

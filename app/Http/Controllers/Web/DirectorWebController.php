@@ -37,9 +37,14 @@ class DirectorWebController extends Controller
         return redirect()->route('directors.index')->with('success', 'Режиссёр успешно создан.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $directors = Director::all();
+        $search = $request->input('search');
+
+        $directors = Director::when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('surname', 'like', '%' . $search . '%');
+        })->get();
 
         return view('directors.index', compact('directors'));
     }

@@ -45,9 +45,13 @@ class MediaWebController extends Controller
         return redirect()->route('media.index');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $mediaCatalog = Media::all();
+        $search = $request->input('search');
+
+        $mediaCatalog = Media::when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->get();
 
         return view('media.index', compact('mediaCatalog'));
     }
