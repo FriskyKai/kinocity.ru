@@ -51,6 +51,7 @@ class FootageWebController extends Controller
 
     public function update(FootageUpdateRequest $request, $id) {
         $footage = MediaFootage::findOrFail($id);
+        $media = $footage->media;
 
         $data = $request->validated();
 
@@ -62,7 +63,7 @@ class FootageWebController extends Controller
 
         $footage->update($data);
 
-        return redirect()->route('media.show', $request->media_id);
+        return redirect()->route('media.show', $media->id);
     }
 
     public function destroy($id)

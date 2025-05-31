@@ -30,6 +30,13 @@
     aspect-ratio: 16/9;
 }
 
+.media-edit-preview {
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-size: 0;
+}
+
 .media-image {
     width: 100%;
     height: 100%;
@@ -102,6 +109,14 @@
     border-radius: 4px;
     font-size: 0.8rem;
 }
+.form-input {
+     width: 25vw;
+     padding: 0.75rem 1rem;
+     border: 1px solid var(--border);
+     border-radius: 6px;
+     font-size: 1rem;
+     transition: var(--transition);
+ }
 
 .age-badge {
     background-color: var(--danger-light);
@@ -112,10 +127,271 @@
     font-weight: 500;
 }
 
+.media-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Основная информация */
+.media-main {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.media-view-preview {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Секции */
+.module-section {
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.module-title {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Кадры */
+.footages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.footage-item {
+    display: block;
+    height: 180px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.footage-item:hover {
+    transform: translateY(-5px);
+}
+
+.footage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Списки людей и жанров */
+.persons-list, .genres-list, .series-list, .reviews-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.person-item, .genre-item, .series-item, .review-item {
+    background: var(--light-bg);
+    border-radius: 6px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.person-item span, .genre-item span {
+    font-weight: 500;
+}
+
+/* Содержимое */
+.content-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--light-bg);
+    border-radius: 6px;
+}
+
+.content-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.content-link:hover {
+    text-decoration: underline;
+}
+
+/* Комментарии */
+.review-item {
+    display: block;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.review-author {
+    font-weight: 600;
+}
+
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.review-text {
+    margin-bottom: 0.5rem;
+}
+
+.review-actions {
+    text-align: right;
+}
+
+/* Бейджи */
+.media-badges {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.bg-primary-light {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.bg-secondary-light {
+    background-color: var(--success-light);
+    color: var(--success);
+}
+
+/* Список серий */
+.series-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.series-item {
+    background: var(--light-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.series-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.series-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.series-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.content-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: var(--transition);
+    word-break: break-all;
+}
+
+.content-link:hover {
+    background: rgba(67, 97, 238, 0.05);
+    text-decoration: underline;
+}
+
+.content-link i {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
-    .media-grid {
-        grid-template-columns: 1fr;
+    .series-item {
+        padding: 1rem;
+    }
+
+    .series-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .series-action {
+        align-self: flex-end;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .media-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .action-buttons {
+        width: 100%;
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    .btn-edit, .btn-delete {
+        flex: 1;
+        text-align: center;
+    }
+
+    .module-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
     }
 }
 

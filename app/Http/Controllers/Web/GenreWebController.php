@@ -21,10 +21,11 @@ class GenreWebController extends Controller
     {
         $genre = Genre::create($request->all());
 
-        // Проверяем, был ли передан media_id для возврата на media-genres.create
-        if ($request->filled('media_id')) {
-            return redirect()->route('media-genres.create', ['media_id' => $request->media_id])
-                ->with('success', 'Жанр успешно создан. Теперь вы можете привязать его к медиа.');
+        // Вернуться к форме привязки к медиа
+        if ($request->has('media_id')) {
+            return redirect()->route('media-genres.create', [
+                'media_id' => $request->media_id
+            ]);
         }
 
         // Если нет media_id — стандартный редирект, например, в список жанров

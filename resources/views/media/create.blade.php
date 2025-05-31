@@ -3,111 +3,192 @@
 @section('title', 'Добавление медиа')
 
 @section('content')
-    <a class="btn" href="/media">Вернуться к списку</a>
-
-    <form class="flex border" action="{{ route('media.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @if($errors->any())
-            <script>
-                alert("Ошибка валидации данных. Изучите ошибки валидации и исправьте данные.")
-            </script>
-        @endif
-
-        <div>
-            <p>* - Обязательное поле</p>
-            <div>
-                @error('preview')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Превью:</label>
-                <div class="file-upload">
-                    <input type="file" id="fileInput" name="preview" class="file-input">
-                    <label for="fileInput" class="file-button">Обзор</label>
-                </div>
-            </div>
-            <div>
-                @error('name')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Имя:</label>
-                <input name="name" type="text" placeholder="Введите имя" required>
-            </div>
-            <div>
-                @error('description')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Описание:</label>
-                <input name="description" type="text" placeholder="Введите описание" required>
-            </div>
-            <div>
-                @error('type')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Тип медиа:</label>
-                <select name="type" required>
-                    <option value="0" selected>Фильм</option>
-                    <option value="1">Сериал</option>
-                </select>
-            </div>
-            <div>
-                @error('studio_id')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Студия:</label>
-                <select name="studio_id" required>
-                    @foreach($studios as $studio)
-                        <option value="{{ $studio->id }}">{{ $studio->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                @error('age_rating_id')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Возр.рейтинг:</label>
-                <select name="age_rating_id" required>
-                    @foreach($ageRatings as $ageRating)
-                        <option value="{{ $ageRating->id }}">{{ $ageRating->age }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
-                @error('duration')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Продолжительность (мин.):</label>
-                <input name="duration" type="number" placeholder="Введите продолжительность" required>
-            </div>
-            <div>
-                @error('release')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Дата выхода:</label>
-                <input name="release" type="date" required>
-            </div>
-            <div>
-                @error('rating')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Рейтинг:</label>
-                <input name="rating" type="number" placeholder="Введите рейтинг" min="0" max="10" step="0.01" required>
-            </div>
-            <div>
-                @error('episodes')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Кол-во серий (1 - если фильм):</label>
-                <input name="episodes" type="number" placeholder="Введите кол-во серий" min="1" required>
-            </div>
-            <div>
-                @error('contentURL')
-                    <p class="warning">{{ $message }}</p>
-                @enderror
-                <label>* Ссылка на контент:</label>
-                <input name="contentURL" type="text" placeholder="Введите ссылку" required>
-            </div>
-
-            <button class="btn" type="submit">Добавить медиа</button>
+    <div class="container">
+        <div class="action-buttons">
+            <a class="btn btn-back" href="/media">
+                <i class="icon-arrow-right"></i> Вернуться к списку
+            </a>
         </div>
-    </form>
+
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">Добавление нового медиа</h1>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('media.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <h3>Ошибка валидации данных</h3>
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <div class="form-notes">
+                        <p><small>* - Обязательное поле</small></p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label class="form-label" for="preview">* Превью:</label>
+                                <div class="file-upload">
+                                    <input type="file" id="fileInput" name="preview" class="file-input" required>
+                                    <label for="fileInput" class="file-button">Обзор</label>
+                                </div>
+                                <span class="file-name-display">
+                                    <span id="currentFileName">{{ 'Файл не выбран' }}</span>
+                                </span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="name">* Имя:</label>
+                                <input class="form-input"
+                                       name="name"
+                                       id="name"
+                                       type="text"
+                                       placeholder="Введите название медиа"
+                                       required
+                                       value="{{ old('name') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="description">* Описание:</label>
+                                <textarea class="form-input"
+                                          name="description"
+                                          id="description"
+                                          rows="3"
+                                          placeholder="Введите описание"
+                                          required>{{ old('description') }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="type">* Тип медиа:</label>
+                                <select class="form-select" name="type" id="type" required>
+                                    <option value="0" {{ old('type') == '0' ? 'selected' : '' }}>Фильм</option>
+                                    <option value="1" {{ old('type') == '1' ? 'selected' : '' }}>Сериал</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label class="form-label" for="studio_id">* Студия:</label>
+                                <select class="form-select" name="studio_id" id="studio_id" required>
+                                    @foreach($studios as $studio)
+                                        <option value="{{ $studio->id }}" {{ old('studio_id') == $studio->id ? 'selected' : '' }}>
+                                            {{ $studio->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="age_rating_id">* Возрастной рейтинг:</label>
+                                <select class="form-select" name="age_rating_id" id="age_rating_id" required>
+                                    @foreach($ageRatings as $ageRating)
+                                        <option value="{{ $ageRating->id }}" {{ old('age_rating_id') == $ageRating->id ? 'selected' : '' }}>
+                                            {{ $ageRating->age }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="duration">* Продолжительность (мин.):</label>
+                                <input class="form-input"
+                                       name="duration"
+                                       id="duration"
+                                       type="number"
+                                       placeholder="Введите продолжительность"
+                                       min="1"
+                                       required
+                                       value="{{ old('duration') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="release">* Дата выхода:</label>
+                                <input class="form-input"
+                                       name="release"
+                                       id="release"
+                                       type="date"
+                                       required
+                                       value="{{ old('release') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="rating">* Рейтинг (0-10):</label>
+                                <input class="form-input"
+                                       name="rating"
+                                       id="rating"
+                                       type="number"
+                                       placeholder="Введите рейтинг"
+                                       min="0"
+                                       max="10"
+                                       step="0.1"
+                                       required
+                                       value="{{ old('rating') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="episodes">* Кол-во серий:</label>
+                                <input class="form-input"
+                                       name="episodes"
+                                       id="episodes"
+                                       type="number"
+                                       placeholder="Введите кол-во серий"
+                                       min="1"
+                                       required
+                                       value="{{ old('episodes') }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label" for="contentURL">* Ссылка на контент:</label>
+                                <input class="form-input"
+                                       name="contentURL"
+                                       id="contentURL"
+                                       type="text"
+                                       placeholder="Введите ссылку"
+                                       required
+                                       value="{{ old('contentURL') }}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="icon-plus"></i> Добавить медиа
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const currentFileName = document.getElementById('currentFileName');
+
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files.length > 0) {
+                    // Полностью заменяем текст на имя нового файла
+                    currentFileName.textContent = this.files[0].name;
+                    // Применяем стили для нового файла
+                    currentFileName.style.color = 'green';
+                    currentFileName.style.fontWeight = 'bold';
+                } else {
+                    // Возвращаем исходное состояние
+                    currentFileName.textContent = 'Файл не выбран';
+                    currentFileName.style.color = '';
+                    currentFileName.style.fontWeight = '';
+                }
+            });
+        });
+    </script>
 @endsection

@@ -3,113 +3,214 @@
 @section('title', 'Просмотр медиа')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
-    <a class="btn" href="/media">Вернуться к списку</a>
-    <a class="btn" href="/media/edit/{{$media->id}}">Редактировать медиа</a>
-    <a class="btn" href="/media/delete/{{$media->id}}">Удалить медиа</a>
-
-    <div class="flex border">
+    <div class="container">
         <div>
-            <div class="flex">
-                <img class="big-photo" src="{{ Str::startsWith($media->preview, 'assets/') ? asset($media->preview) : asset('storage/' . $media->preview) }}" alt="Превью"/>
-                <div class="media-info">
-                    <div>Название: {{ $media->name }}</div>
-                    <div>Описание: {{ $media->description }}</div>
-                    <div>Тип: {{ $media->type ? 'Сериал' : 'Фильм' }}</div>
-                    <div>Студия: {{ $media->studio->name }}</div>
-                    <div>Возр.рейтинг: {{ $media->ageRating->age }}</div>
-                    <div>Продолжительность: {{ $media->duration }}</div>
-                    <div>Дата выхода: {{ $media->release }}</div>
-                    <div>Рейтинг: {{ $media->rating }}</div>
-                    <div>Кол-во серий: {{ $media->episodes ? $media->episodes : 1}}</div>
-                </div>
-            </div>
-            <div class="media-module">
-                <div>
-                    @foreach($footages as $footage)
-                        <a href="{{ route('footages.show', $footage->id) }}">
-                            <img class="footage" src="{{ Str::startsWith($footage->photo, 'assets/') ? asset($footage->photo) : asset('storage/' . $footage->photo) }}" alt="Кадр"/>
-                        </a>
-                    @endforeach
-                </div>
-                <a class="btn" href="{{ route('footages.create', ['media_id' => $media->id]) }}">Добавить кадр</a>
-            </div>
-            <div class="media-module border-list">
-                <label>Режиссёры:</label>
-                <a class="btn" href="{{ route('media-directors.create', ['media_id' => $media->id]) }}">Добавить режиссёра</a>
-                @foreach($media->mediaDirectors as $mediaDirector)
-                    <div class="flex center">
-                        <p>{{ $mediaDirector->director->surname . ' ' . $mediaDirector->director->name }}</p>
-                        <a class="btn" href="{{ route('media-directors.destroy', ['id' => $mediaDirector->id]) }}">Удалить</a>
-                    </div>
-                @endforeach
-            </div>
-            <div class="media-module border-list">
-                <label>Актёры:</label>
-                <a class="btn" href="{{ route('media-actors.create', ['media_id' => $media->id]) }}">Добавить актёра</a>
-                @foreach($media->mediaActors as $mediaActor)
-                    <div class="flex center">
-                        <p>{{ $mediaActor->actor->surname . ' ' . $mediaActor->actor->name }}</p>
-                        <a class="btn" href="{{ route('media-actors.destroy', ['id' => $mediaActor->id]) }}">Удалить</a>
-                    </div>
-                @endforeach
-            </div>
-            <div class="media-module border-list">
-                <label>Жанры:</label>
-                <a class="btn btn-do" href="{{ route('media-genres.create', ['media_id' => $media->id]) }}">Добавить жанр</a>
-                @foreach($media->mediaGenres as $mediaGenre)
-                    <div class="flex center">
-                        <p>{{ $mediaGenre->genre->name }}</p>
-                        <a class="btn" href="{{ route('media-genres.destroy', ['id' => $mediaGenre->id]) }}">Удалить</a>
-                    </div>
-                @endforeach
-            </div>
-            <div class="media-module border-list">
-                <label>Содержимое медиа:</label>
-                @if($media->type == 0) <!-- Фильм -->
-                <div class="flex center">
-                    <p>Ссылка на фильм:</p>
-                    <a href="{{ $media->contentURL }}" target="_blank" class="content-link">
-                        {{ $media->contentURL }}
-                    </a>
-                </div>
-                @else <!-- Сериал -->
-                <a class="btn" href="{{ route('series.create', ['media_id' => $media->id]) }}">
-                    Добавить серию
+            <div class="action-buttons">
+                <a class="btn btn-back" href="/media">
+                    <i class="icon-arrow-right"></i> Вернуться к списку
                 </a>
-                @foreach($media->series as $series)
-                    <div class="flex center border-list">
-                        <div class="div85">
-                            <p>Серия {{ $series->series_number }}:</p>
-                            <a href="{{ $series->url }}" target="_blank" class="content-link">
-                                {{ $series->url }}
-                            </a>
+                <a href="/media/edit/{{$media->id}}">
+                    <button class="btn">
+                        <i class="btn-icon-edit"></i> Редактировать
+                    </button>
+                </a>
+                <form method="GET" action="{{ route('media.destroy', $media->id) }}" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn" onclick="return confirm('Вы уверены, что хотите удалить этого актёра?')">
+                        <i class="btn-icon-delete"></i> Удалить
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">{{ $media->name }}</h1>
+                <div class="media-badges">
+                    <span class="badge bg-primary-light">{{ $media->type ? 'Сериал' : 'Фильм' }}</span>
+                    <span class="badge bg-secondary-light">{{ $media->ageRating->age }}</span>
+                    <span class="badge bg-accent-light">{{ $media->duration }} мин.</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="media-main">
+                    <img class="media-view-preview"
+                         src="{{ Str::startsWith($media->preview, 'assets/') ? asset($media->preview) : asset('storage/' . $media->preview) }}"
+                         alt="Превью {{ $media->name }}"
+                         onerror="this.src='{{ asset('assets/default-media.jpg') }}'">
+                    <div class="media-info">
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">Студия:</span>
+                                <span class="detail-value">{{ $media->studio->name }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Дата выхода:</span>
+                                <span class="detail-value">{{ $media->release }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Рейтинг:</span>
+                                <span class="detail-value">{{ $media->rating }}/10</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Кол-во серий:</span>
+                                <span class="detail-value">{{ $media->episodes ? $media->episodes : 1 }}</span>
+                            </div>
                         </div>
-                        <a class="btn" href="{{ route('series.destroy', ['series' => $series]) }}">
-                            Удалить
+                        <div class="description-section">
+                            <h3 class="section-title">Описание</h3>
+                            <p class="description-text">{{ $media->description }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кадры -->
+                <div class="module-section">
+                    <div class="module-header">
+                        <h2 class="module-title">Кадры</h2>
+                        <a class="btn btn-primary" href="{{ route('footages.create', ['media_id' => $media->id]) }}">
+                            <i class="icon-plus"></i> Добавить кадр
                         </a>
                     </div>
-                @endforeach
-                @endif
-            </div>
-            <div class="media-module">
-                <label>Комментарии:</label>
-                @foreach($reviews as $review)
-                    <div class="flex center border-list">
-                        <div class="div85">
-                            <p>{{ $review->user->name}}</p>
-                            <p>{{ $review->text}}</p>
-                        </div>
-                        <div>
-                            <p>Оценка: {{ $review->rating}}</p>
-                        </div>
-                        <a class="btn" href="{{ route('reviews.destroy', ['id' => $review->id]) }}">Удалить</a>
+                    <div class="footages-grid">
+                        @foreach($footages as $footage)
+                            <a href="{{ route('footages.show', $footage->id) }}" class="footage-item">
+                                <img src="{{ Str::startsWith($footage->photo, 'assets/') ? asset($footage->photo) : asset('storage/' . $footage->photo) }}"
+                                     alt="Кадр из {{ $media->name }}"
+                                     onerror="this.src='{{ asset('assets/default-footage.jpg') }}'">
+                            </a>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
+
+                <!-- Режиссеры -->
+                <div class="module-section">
+                    <div class="module-header">
+                        <h2 class="module-title">Режиссёры</h2>
+                        <a class="btn btn-primary" href="{{ route('media-directors.create', ['media_id' => $media->id]) }}">
+                            <i class="icon-plus"></i> Добавить режиссёра
+                        </a>
+                    </div>
+                    <div class="persons-list">
+                        @foreach($media->mediaDirectors as $mediaDirector)
+                            <div class="person-item">
+                                <span>{{ $mediaDirector->director->surname }} {{ $mediaDirector->director->name }}</span>
+                                <form method="GET" action="{{ route('media-directors.destroy', $mediaDirector->id) }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-icon btn-danger btn-icon-delete" title="Удалить">Удалить</button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Актёры -->
+                <div class="module-section">
+                    <div class="module-header">
+                        <h2 class="module-title">Актёры</h2>
+                        <a class="btn btn-primary" href="{{ route('media-actors.create', ['media_id' => $media->id]) }}">
+                            <i class="icon-plus"></i> Добавить актёра
+                        </a>
+                    </div>
+                    <div class="persons-list">
+                        @foreach($media->mediaActors as $mediaActor)
+                            <div class="person-item">
+                                <span>{{ $mediaActor->actor->surname }} {{ $mediaActor->actor->name }}</span>
+                                <form method="GET" action="{{ route('media-actors.destroy', $mediaActor->id) }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-icon btn-danger btn-icon-delete" title="Удалить">Удалить</button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Жанры -->
+                <div class="module-section">
+                    <div class="module-header">
+                        <h2 class="module-title">Жанры</h2>
+                        <a class="btn btn-primary" href="{{ route('media-genres.create', ['media_id' => $media->id]) }}">
+                            <i class="icon-plus"></i> Добавить жанр
+                        </a>
+                    </div>
+                    <div class="genres-list">
+                        @foreach($media->mediaGenres as $mediaGenre)
+                            <div class="genre-item">
+                                <span>{{ $mediaGenre->genre->name }}</span>
+                                <form method="GET" action="{{ route('media-genres.destroy', $mediaGenre->id) }}" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-icon btn-danger btn-icon-delete" title="Удалить">Удалить</button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Содержимое медиа -->
+                <div class="module-section">
+                    <div class="module-header">
+                        <h2 class="module-title">Содержимое медиа</h2>
+                        @if($media->type == 1) <!-- Сериал -->
+                        <a class="btn btn-primary" href="{{ route('series.create', ['media_id' => $media->id]) }}">
+                            <i class="icon-plus"></i> Добавить серию
+                        </a>
+                        @endif
+                    </div>
+
+                    @if($media->type == 0) <!-- Фильм -->
+                    <div class="content-item">
+                        <i class="icon-link"></i>
+                        <a href="{{ $media->contentURL }}" target="_blank" class="content-link">
+                            {{ $media->contentURL }}
+                        </a>
+                    </div>
+                    @else <!-- Сериал -->
+                    <div class="series-list">
+                        @foreach($media->series as $series)
+                            <div class="series-item">
+                                <div class="series-content">
+                                    <div class="series-header">
+                                        <h4 class="series-title">Серия {{ $series->series_number }}</h4>
+                                        <a href="{{ $series->url }}" target="_blank" class="content-link">
+                                            <i class="icon-link"></i> {{ $series->url }}
+                                        </a>
+                                    </div>
+                                    <form method="GET" action="{{ route('series.destroy', $series->id) }}" class="series-action">
+                                        @csrf
+                                        <button type="submit" class="btn btn-icon btn-danger btn-icon-delete" title="Удалить">Удалить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
+
+                <!-- Комментарии -->
+                <div class="module-section">
+                    <h2 class="module-title">Комментарии</h2>
+                    <div class="reviews-list">
+                        @foreach($reviews as $review)
+                            <div class="review-item">
+                                <div class="review-header">
+                                    <div class="review-author">{{ $review->user->name }}</div>
+                                    <div class="review-rating">
+                                        <span class="rating-value">{{ $review->rating }}</span>
+                                        <i class="icon-star"></i>
+                                    </div>
+                                </div>
+                                <div class="review-text">{{ $review->text }}</div>
+                                <div class="review-actions">
+                                    <form method="GET" action="{{ route('reviews.destroy', $review->id) }}" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="btn btn-icon btn-danger btn-icon-delete" title="Удалить">Удалить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 @endsection
-
-

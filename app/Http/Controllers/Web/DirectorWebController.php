@@ -27,9 +27,11 @@ class DirectorWebController extends Controller
 
         $director = Director::create($data);
 
-        if ($request->filled('media_id')) {
-            return redirect()->route('media-directors.create', ['media_id' => $request->media_id])
-                ->with('success', 'Режиссёр успешно создан. Теперь вы можете привязать его к медиа.');
+        // Вернуться к форме привязки к медиа
+        if ($request->has('media_id')) {
+            return redirect()->route('media-directors.create', [
+                'media_id' => $request->media_id
+            ]);
         }
 
         return redirect()->route('directors.index')->with('success', 'Режиссёр успешно создан.');

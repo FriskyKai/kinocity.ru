@@ -3,11 +3,40 @@
 @section('title', 'Просмотр кадра')
 
 @section('content')
-    <a class="btn" href="/media/show/{{$media->id}}">Вернуться к медиа</a>
-    <a class="btn" href="/footages/edit/{{$footage->id}}">Редактировать кадр</a>
-    <a class="btn" href="/footages/delete/{{$footage->id}}">Удалить кадр</a>
+    <div class="container">
+        <div class="action-buttons">
+            <a href="/media/show/{{$media->id}}">
+                <button class="btn btn-back">
+                    <i class="btn-icon-view"></i> Просмотр медиа
+                </button>
+            </a>
+            <a href="/footages/edit/{{$footage->id}}">
+                <button class="btn">
+                    <i class="btn-icon-edit"></i> Редактировать
+                </button>
+            </a>
+            <form method="GET" action="{{ route('footages.destroy', $footage->id) }}" class="d-inline">
+                @csrf
+                <button type="submit" class="btn" onclick="return confirm('Вы уверены, что хотите удалить этот кадр?')">
+                    <i class="btn-icon-delete"></i> Удалить
+                </button>
+            </form>
+        </div>
 
-    <div class="flex border">
-        <img class="footage-show" src="{{ Str::startsWith($footage->photo, 'assets/') ? asset($footage->photo) : asset('storage/' . $footage->photo) }}" alt="Кадр"/>
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title">Просмотр кадра</h1>
+                <div class="footage-info">
+                    <span>Из медиа: <strong>{{ $media->name }}</strong></span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="footage-preview">
+                    <img src="{{ Str::startsWith($footage->photo, 'assets/') ? asset($footage->photo) : asset('storage/' . $footage->photo) }}"
+                         alt="Кадр из {{ $media->name }}"
+                         onerror="this.src='{{ asset('assets/default-footage.jpg') }}'">
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

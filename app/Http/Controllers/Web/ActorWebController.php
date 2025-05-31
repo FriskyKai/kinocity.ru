@@ -28,9 +28,10 @@ class ActorWebController extends Controller
         $actor = Actor::create($data);
 
         // Вернуться к форме привязки к медиа
-        if ($request->filled('media_id')) {
-            return redirect()->route('media-actors.create', ['media_id' => $request->media_id])
-                ->with('success', 'Актёр успешно создан. Теперь вы можете привязать его к медиа.');
+        if ($request->has('media_id')) {
+            return redirect()->route('media-actors.create', [
+                'media_id' => $request->media_id
+            ]);
         }
 
         return redirect()->route('actors.index')->with('success', 'Актёр успешно создан.');
