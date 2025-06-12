@@ -16,7 +16,7 @@
                 </a>
                 <form method="GET" action="{{ route('media.destroy', $media->id) }}" class="d-inline">
                     @csrf
-                    <button type="submit" class="btn" onclick="return confirm('Вы уверены, что хотите удалить этого актёра?')">
+                    <button type="submit" class="btn" onclick="return confirm('Вы уверены, что хотите удалить это медиа?')">
                         <i class="btn-icon-delete"></i> Удалить
                     </button>
                 </form>

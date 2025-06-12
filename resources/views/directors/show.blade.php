@@ -16,7 +16,7 @@
                 </a>
                 <form method="GET" action="{{ route('directors.destroy', $director->id) }}" class="d-inline">
                     @csrf
-                    <button type="submit" class="btn" onclick="return confirm('Вы уверены, что хотите удалить этого актёра?')">
+                    <button type="submit" class="btn" onclick="return confirm('Вы уверены, что хотите удалить этого режиссёра?')">
                         <i class="btn-icon-delete"></i> Удалить
                     </button>
                 </form>
