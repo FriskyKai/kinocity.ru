@@ -19,7 +19,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h1 class="card-title">Добавление нового медиа</h1>
+                <h1 class="card-title">Редактирование медиа</h1>
             </div>
             <div class="card-body">
                 <form action="{{ route('media.update', $media) }}" method="POST" enctype="multipart/form-data">
